@@ -1,0 +1,3021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liberia Statistics Institute</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #122040;
+    --navy-light: #1e3a5f;
+    --gold: #c9922a;
+    --gold-light: #e8b84b;
+    --gold-pale: #fdf3e3;
+    --white: #ffffff;
+    --off-white: #f8f6f2;
+    --text-dark: #1a1a2e;
+    --text-mid: #4a5568;
+    --text-light: #718096;
+    --border: #e2d9c8;
+    --success: #2d7d46;
+    --danger: #c0392b;
+    --shadow-sm: 0 2px 8px rgba(10,22,40,0.08);
+    --shadow-md: 0 8px 30px rgba(10,22,40,0.12);
+    --shadow-lg: 0 20px 60px rgba(10,22,40,0.18);
+    --radius: 12px;
+    --radius-lg: 20px;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-dark);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAVBAR ─── */
+  .navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(10,22,40,0.96);
+    backdrop-filter: blur(12px);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+    border-bottom: 1px solid rgba(201,146,42,0.2);
+    transition: all 0.3s;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .nav-logo-icon {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; color: var(--navy); font-weight: 900;
+  }
+  .nav-brand-text { display: flex; flex-direction: column; }
+  .nav-brand-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--white); line-height: 1.1;
+  }
+  .nav-brand-sub {
+    font-size: 0.65rem; color: var(--gold-light);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .nav-menu {
+    display: flex; align-items: center; gap: 0.25rem;
+    list-style: none;
+  }
+  .nav-menu a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none; font-size: 0.85rem; font-weight: 500;
+    padding: 0.4rem 0.85rem; border-radius: 6px;
+    transition: all 0.2s;
+  }
+  .nav-menu a:hover { color: var(--gold-light); background: rgba(201,146,42,0.1); }
+  .nav-login-btn {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light)) !important;
+    color: var(--navy) !important; font-weight: 600 !important;
+    padding: 0.45rem 1.1rem !important;
+  }
+  .nav-login-btn:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(201,146,42,0.4); }
+
+  .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 8rem 2rem 4rem;
+  }
+  .hero-bg-pattern {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(201,146,42,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(30,58,95,0.5) 0%, transparent 50%);
+  }
+  .hero-grid-overlay {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
+    background-image: linear-gradient(var(--gold) 1px, transparent 1px),
+      linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-decoration {
+    position: absolute; right: -80px; top: 50%; transform: translateY(-50%);
+    width: 600px; height: 600px;
+    border: 1px solid rgba(201,146,42,0.12);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero-decoration::before {
+    content: ''; position: absolute; inset: 40px;
+    border: 1px solid rgba(201,146,42,0.08);
+    border-radius: 50%;
+  }
+  .hero-decoration::after {
+    content: ''; position: absolute; inset: 80px;
+    border: 1px solid rgba(201,146,42,0.05);
+    border-radius: 50%;
+  }
+  .hero-content { max-width: 680px; position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(201,146,42,0.15); border: 1px solid rgba(201,146,42,0.3);
+    color: var(--gold-light); padding: 0.4rem 1rem; border-radius: 20px;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900; line-height: 1.1;
+    color: var(--white); margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero-title .accent { color: var(--gold-light); }
+  .hero-desc {
+    color: rgba(255,255,255,0.7); font-size: 1.05rem; line-height: 1.8;
+    margin-bottom: 2.5rem; max-width: 540px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy); font-weight: 700; font-size: 0.9rem;
+    padding: 0.85rem 2rem; border-radius: 8px; border: none;
+    cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.25s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(201,146,42,0.45); }
+  .btn-outline {
+    background: transparent; color: var(--white); font-weight: 600; font-size: 0.9rem;
+    padding: 0.85rem 2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.25);
+    cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.25s;
+  }
+  .btn-outline:hover { border-color: var(--gold-light); color: var(--gold-light); background: rgba(201,146,42,0.05); }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 3.5rem;
+    animation: fadeUp 0.6s 0.4s ease both;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .hero-stat { }
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700; color: var(--gold-light); line-height: 1;
+  }
+  .hero-stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 4px; }
+
+  /* ─── SECTION COMMONS ─── */
+  section { padding: 6rem 2rem; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700; color: var(--navy); line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .section-desc { color: var(--text-mid); font-size: 1rem; line-height: 1.7; max-width: 580px; }
+
+  /* ─── FEATURES ─── */
+  #about { background: var(--off-white); }
+  .features-header { text-align: center; margin-bottom: 3.5rem; }
+  .features-header .section-desc { margin: 0 auto; }
+  .features-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .feature-card {
+    background: var(--white); border-radius: var(--radius);
+    padding: 2rem; border: 1px solid var(--border);
+    transition: all 0.3s;
+    opacity: 0; transform: translateY(30px);
+  }
+  .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--gold); }
+  .feature-icon {
+    width: 52px; height: 52px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--gold-pale), #fde8c8);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; color: var(--gold); margin-bottom: 1.25rem;
+  }
+  .feature-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .feature-desc { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; }
+
+  /* ─── PROGRAMS ─── */
+  #programs { background: var(--white); }
+  .programs-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .programs-visual {
+    background: var(--navy); border-radius: var(--radius-lg);
+    padding: 2.5rem; position: relative; overflow: hidden;
+  }
+  .programs-visual::before {
+    content: ''; position: absolute;
+    top: -40px; right: -40px; width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(201,146,42,0.2), transparent);
+    border-radius: 50%;
+  }
+  .prog-item {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.25rem; border-radius: 10px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 0.75rem; transition: all 0.2s;
+  }
+  .prog-item:hover { background: rgba(201,146,42,0.1); border-color: rgba(201,146,42,0.3); }
+  .prog-icon { font-size: 1.4rem; width: 40px; text-align: center; }
+  .prog-name { color: var(--white); font-weight: 600; font-size: 0.92rem; }
+  .prog-level { color: rgba(255,255,255,0.45); font-size: 0.78rem; margin-top: 2px; }
+  .prog-badge {
+    margin-left: auto; background: rgba(201,146,42,0.2); color: var(--gold-light);
+    font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600;
+  }
+  .course-list { list-style: none; margin-top: 1.5rem; }
+  .course-list li {
+    display: flex; align-items: center; gap: 10px;
+    padding: 0.6rem 0; border-bottom: 1px solid var(--border);
+    font-size: 0.9rem; color: var(--text-mid);
+  }
+  .course-list li i { color: var(--gold); font-size: 0.8rem; }
+
+  /* ─── TEACHERS ─── */
+  #teachers { background: var(--off-white); }
+  .teachers-header { margin-bottom: 3rem; }
+  .teachers-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .teacher-card {
+    background: var(--white); border-radius: var(--radius-lg);
+    overflow: hidden; border: 1px solid var(--border);
+    transition: all 0.3s;
+    opacity: 0; transform: translateY(30px);
+  }
+  .teacher-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+  .teacher-card-top {
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    padding: 2rem; display: flex; gap: 1.25rem; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .teacher-card-top::after {
+    content: ''; position: absolute; bottom: -20px; right: -20px;
+    width: 100px; height: 100px;
+    background: radial-gradient(circle, rgba(201,146,42,0.15), transparent);
+    border-radius: 50%;
+  }
+  .teacher-avatar {
+    width: 70px; height: 70px; border-radius: 50%;
+    border: 3px solid rgba(201,146,42,0.5);
+    object-fit: cover; flex-shrink: 0;
+  }
+  .teacher-head-info { }
+  .teacher-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--white); }
+  .teacher-subject-badge {
+    display: inline-block; margin-top: 6px;
+    background: rgba(201,146,42,0.2); border: 1px solid rgba(201,146,42,0.4);
+    color: var(--gold-light); font-size: 0.72rem; font-weight: 600;
+    padding: 2px 10px; border-radius: 10px;
+  }
+  .teacher-card-body { padding: 1.5rem; }
+  .teacher-bio { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 1rem; }
+  .teacher-qual { font-size: 0.8rem; color: var(--text-light); margin-bottom: 1rem; }
+  .teacher-qual i { color: var(--gold); margin-right: 4px; }
+  .teacher-rating { display: flex; align-items: center; gap: 8px; }
+  .stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 1px; }
+  .rating-value { font-size: 0.8rem; color: var(--text-mid); }
+
+  /* ─── EVENTS ─── */
+  #events { background: var(--white); }
+  .events-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; }
+  .events-list-wrap { }
+  .event-item {
+    padding: 1.25rem; border-radius: var(--radius);
+    border: 1px solid var(--border); margin-bottom: 1rem;
+    transition: all 0.25s;
+    opacity: 0; transform: translateY(30px);
+  }
+  .event-item:hover { border-color: var(--gold); background: var(--gold-pale); }
+  .event-date { font-size: 0.78rem; font-weight: 600; color: var(--gold); margin-bottom: 4px; }
+  .event-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; }
+  .event-description { font-size: 0.83rem; color: var(--text-mid); }
+  .event-type-dot {
+    display: inline-block; width: 8px; height: 8px;
+    border-radius: 50%; margin-right: 4px;
+    background: var(--gold);
+  }
+  .calendar-wrap {
+    background: var(--off-white); border-radius: var(--radius-lg);
+    padding: 1.5rem; border: 1px solid var(--border);
+  }
+  .cal-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  .cal-month { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
+  .cal-nav { background: none; border: 1px solid var(--border); padding: 4px 10px; border-radius: 6px; cursor: pointer; }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+  .cal-day-label { font-size: 0.7rem; font-weight: 600; color: var(--text-light); text-align: center; padding: 4px 0; }
+  .cal-day {
+    aspect-ratio: 1; border-radius: 8px; display: flex; align-items: center;
+    justify-content: center; font-size: 0.82rem; cursor: pointer; transition: all 0.15s;
+  }
+  .cal-day:hover { background: var(--gold-pale); }
+  .cal-day.today { background: var(--navy); color: var(--white); font-weight: 700; }
+  .cal-day.has-event { position: relative; font-weight: 600; color: var(--gold); }
+  .cal-day.has-event::after {
+    content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%);
+    width: 4px; height: 4px; border-radius: 50%; background: var(--gold);
+  }
+  .cal-day.empty { opacity: 0; pointer-events: none; }
+
+  /* ─── CONTACT ─── */
+  #contact { background: var(--navy); }
+  #contact .section-title { color: var(--white); }
+  #contact .section-label { }
+  #contact .section-desc { color: rgba(255,255,255,0.6); }
+  .contact-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; }
+  .contact-info-item {
+    display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;
+  }
+  .contact-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: rgba(201,146,42,0.15); border: 1px solid rgba(201,146,42,0.3);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold-light); font-size: 1rem; flex-shrink: 0;
+  }
+  .contact-info-label { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .contact-info-val { color: var(--white); font-size: 0.9rem; }
+  .contact-form { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg); padding: 2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .form-group { margin-bottom: 1rem; }
+  .form-group label { display: block; font-size: 0.82rem; color: rgba(255,255,255,0.6); margin-bottom: 6px; font-weight: 500; }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; padding: 0.75rem 1rem; border-radius: 8px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    outline: none; transition: border 0.2s;
+  }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--gold); }
+  .form-group textarea { height: 110px; resize: none; }
+  #formMessage { margin-top: 0.75rem; font-size: 0.85rem; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #060e1d; padding: 3rem 2rem 1.5rem;
+    border-top: 1px solid rgba(201,146,42,0.15);
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
+  .footer-brand-desc { color: rgba(255,255,255,0.45); font-size: 0.85rem; line-height: 1.8; margin-top: 0.75rem; }
+  .footer-heading { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1rem; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 0.5rem; }
+  .footer-links a { color: rgba(255,255,255,0.45); font-size: 0.85rem; text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold-light); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+  .footer-socials { display: flex; gap: 0.75rem; }
+  .footer-social { width: 34px; height: 34px; border-radius: 8px; background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); font-size: 0.85rem; text-decoration: none; transition: all 0.2s; }
+  .footer-social:hover { background: rgba(201,146,42,0.2); color: var(--gold-light); }
+
+  /* ─── FOUNDER SECTION ─── */
+  .founder-section {
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    padding: 5rem 2rem; position: relative; overflow: hidden;
+  }
+  .founder-section::before {
+    content: ''; position: absolute; top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(201,146,42,0.12), transparent);
+    border-radius: 50%; pointer-events: none;
+  }
+  .founder-section::after {
+    content: ''; position: absolute; bottom: -60px; left: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(201,146,42,0.08), transparent);
+    border-radius: 50%; pointer-events: none;
+  }
+  .founder-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: auto 1fr; gap: 3.5rem; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .founder-portrait {
+    width: 200px; height: 200px; border-radius: 50%;
+    border: 4px solid rgba(201,146,42,0.5);
+    box-shadow: 0 0 0 8px rgba(201,146,42,0.1), var(--shadow-lg);
+    background: linear-gradient(135deg, var(--navy-light), #0d2a4a);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900;
+    color: var(--gold-light); flex-shrink: 0; position: relative;
+  }
+  .founder-portrait-badge {
+    position: absolute; bottom: 8px; right: 8px;
+    background: var(--gold); color: var(--navy);
+    font-size: 0.65rem; font-weight: 700; padding: 3px 8px; border-radius: 10px;
+    letter-spacing: 0.04em; white-space: nowrap;
+  }
+  .founder-quote-mark {
+    font-family: 'Playfair Display', serif; font-size: 6rem; line-height: 0.7;
+    color: rgba(201,146,42,0.25); display: block; margin-bottom: 0.5rem;
+  }
+  .founder-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900; color: var(--white); margin-bottom: 0.3rem;
+  }
+  .founder-title {
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.25rem;
+  }
+  .founder-bio {
+    color: rgba(255,255,255,0.7); font-size: 0.97rem; line-height: 1.85;
+    max-width: 640px; margin-bottom: 1.5rem;
+  }
+  .founder-credentials {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+  }
+  .founder-cred {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(201,146,42,0.12); border: 1px solid rgba(201,146,42,0.25);
+    color: rgba(255,255,255,0.75); padding: 4px 12px; border-radius: 20px;
+    font-size: 0.75rem; font-weight: 500;
+  }
+  .founder-cred i { color: var(--gold-light); font-size: 0.7rem; }
+  @media (max-width: 700px) {
+    .founder-inner { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+    .founder-credentials { justify-content: center; }
+    .founder-portrait { width: 150px; height: 150px; font-size: 2.8rem; }
+  }
+
+  .newsletter-form { display: flex; gap: 0.5rem; margin-top: 1rem; }
+  .newsletter-form input { flex: 1; padding: 0.6rem 0.9rem; border-radius: 7px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.06); color: var(--white); font-size: 0.82rem; outline: none; }
+  .newsletter-form button { background: var(--gold); color: var(--navy); border: none; padding: 0 0.9rem; border-radius: 7px; cursor: pointer; font-weight: 700; font-size: 0.8rem; }
+
+  /* ─── MODALS ─── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 2000;
+    background: rgba(6,14,29,0.85); backdrop-filter: blur(8px);
+    align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--white); border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg); max-height: 90vh; overflow-y: auto;
+    position: relative; animation: modalIn 0.3s ease;
+  }
+  .login-modal { width: 420px; padding: 2.5rem; }
+  .dashboard-modal { width: 900px; padding: 0; }
+  @keyframes modalIn { from { opacity: 0; transform: scale(0.94) translateY(20px); } to { opacity: 1; transform: none; } }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1rem;
+    width: 32px; height: 32px; border-radius: 50%;
+    border: none; background: var(--off-white); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; color: var(--text-mid); transition: all 0.2s;
+  }
+  .modal-close:hover { background: var(--navy); color: var(--white); }
+
+  .login-logo { text-align: center; margin-bottom: 1.5rem; }
+  .login-logo-icon {
+    width: 56px; height: 56px; margin: 0 auto 0.75rem;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; color: var(--gold-light);
+  }
+  .login-modal h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--navy); text-align: center; }
+  .login-modal p { font-size: 0.85rem; color: var(--text-mid); text-align: center; margin-top: 4px; }
+  .login-field { margin-top: 1.25rem; }
+  .login-field label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-dark); margin-bottom: 6px; }
+  .login-field input {
+    width: 100%; padding: 0.75rem 1rem; border-radius: 8px;
+    border: 1.5px solid var(--border); font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    outline: none; transition: border 0.2s;
+  }
+  .login-field input:focus { border-color: var(--navy); }
+  .login-btn {
+    width: 100%; margin-top: 1.5rem;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    color: var(--white); font-weight: 700; font-size: 0.92rem;
+    padding: 0.85rem; border-radius: 8px; border: none; cursor: pointer;
+    transition: all 0.25s;
+  }
+  .login-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(10,22,40,0.35); }
+  .login-hint { margin-top: 1rem; padding: 0.75rem; background: var(--gold-pale); border-radius: 8px; font-size: 0.78rem; color: var(--text-mid); text-align: center; }
+
+  /* ─── DASHBOARD ─── */
+  .dash-header {
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    padding: 2rem 2.5rem; border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .dash-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--white); }
+  .dash-subtitle { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 3px; }
+  .dash-body { padding: 0 2.5rem 2.5rem; }
+
+  .dash-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 1.5rem 0; }
+  .dash-stat-card {
+    background: var(--off-white); border-radius: var(--radius); padding: 1.25rem;
+    border: 1px solid var(--border); text-align: center;
+  }
+  .dash-stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--navy); }
+  .dash-stat-label { font-size: 0.75rem; color: var(--text-mid); margin-top: 3px; }
+
+  .tab-nav { display: flex; gap: 0.25rem; border-bottom: 2px solid var(--border); margin-bottom: 1.5rem; }
+  .tab-btn {
+    padding: 0.65rem 1.25rem; border: none; background: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600;
+    color: var(--text-light); border-bottom: 2px solid transparent; margin-bottom: -2px;
+    transition: all 0.2s;
+  }
+  .tab-btn.active { color: var(--navy); border-bottom-color: var(--gold); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .grades-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .grades-table th { text-align: left; padding: 0.6rem 1rem; background: var(--navy); color: var(--white); font-weight: 600; font-size: 0.8rem; }
+  .grades-table th:first-child { border-radius: 8px 0 0 8px; }
+  .grades-table th:last-child { border-radius: 0 8px 8px 0; }
+  .grades-table td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--border); }
+  .grades-table tr:hover td { background: var(--off-white); }
+  .status-pass { color: var(--success); font-weight: 600; }
+  .status-fail { color: var(--danger); font-weight: 600; }
+
+  .attendance-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+  .att-card {
+    text-align: center; padding: 1.5rem; border-radius: var(--radius);
+    background: var(--off-white); border: 1px solid var(--border);
+  }
+  .att-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--navy); }
+  .att-label { font-size: 0.78rem; color: var(--text-mid); margin-top: 4px; }
+  .att-bar-wrap { background: var(--border); border-radius: 4px; height: 8px; margin-top: 1.5rem; overflow: hidden; }
+  .att-bar { height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 4px; transition: width 0.8s ease; }
+
+  .schedule-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .schedule-table th { background: var(--navy); color: var(--white); padding: 0.5rem 0.75rem; font-size: 0.75rem; font-weight: 600; text-align: center; }
+  .schedule-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); text-align: center; font-size: 0.8rem; }
+  .schedule-table td:first-child { font-weight: 600; color: var(--navy); text-align: left; }
+  .schedule-table tr:nth-child(even) td { background: var(--off-white); }
+
+  .evaluation-item {
+    border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem;
+  }
+  .evaluation-item h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--navy); }
+  .rating-input { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+  .rating-input label { display: flex; align-items: center; gap: 4px; font-size: 0.8rem; cursor: pointer; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border); transition: all 0.15s; }
+  .rating-input label:hover { border-color: var(--gold); background: var(--gold-pale); }
+  .rating-input input { margin: 0; }
+  .evaluation-comment { width: 100%; padding: 0.6rem; border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; resize: none; height: 70px; outline: none; margin-bottom: 0.75rem; }
+  .submit-evaluation { background: var(--navy); color: var(--white); border: none; padding: 0.5rem 1.2rem; border-radius: 7px; cursor: pointer; font-weight: 600; font-size: 0.82rem; transition: all 0.2s; }
+  .submit-evaluation:hover { background: var(--navy-light); }
+  .download-btn { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--navy); border: none; padding: 0.6rem 1.4rem; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .programs-layout, .contact-layout, .events-layout { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .dash-stats { grid-template-columns: repeat(2, 1fr); }
+    .form-row { grid-template-columns: 1fr; }
+    .dashboard-modal { width: 95vw; }
+    .attendance-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .hamburger { display: flex; }
+    .nav-menu {
+      position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+      background: var(--navy); flex-direction: column; gap: 0; padding: 1rem;
+      transform: translateX(100%); transition: transform 0.3s;
+    }
+    .nav-menu.active { transform: translateX(0); }
+    .nav-menu a { display: block; padding: 0.75rem 1rem; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .login-modal { width: 94vw; padding: 2rem; }
+    .dash-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .dash-body { padding: 0 1.25rem 1.5rem; }
+    .teachers-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ═══════════════════════════════════════
+     ADMIN PANEL STYLES
+  ═══════════════════════════════════════ */
+  .nav-admin-btn {
+    background: rgba(201,146,42,0.15) !important;
+    border: 1px solid rgba(201,146,42,0.35) !important;
+    color: var(--gold-light) !important;
+    font-weight: 600 !important;
+    padding: 0.4rem 0.9rem !important;
+    border-radius: 6px !important;
+  }
+  .nav-admin-btn:hover { background: rgba(201,146,42,0.28) !important; }
+
+  /* Admin modal full-screen panel */
+  .admin-modal { width: min(1100px, 96vw); padding: 0; max-height: 92vh; }
+
+  .admin-topbar {
+    background: linear-gradient(135deg, #0a1628, #1a2d4a);
+    padding: 1.25rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    border-bottom: 1px solid rgba(201,146,42,0.2);
+  }
+  .admin-topbar-left { display: flex; align-items: center; gap: 12px; }
+  .admin-badge {
+    background: var(--gold); color: var(--navy);
+    font-size: 0.65rem; font-weight: 800; padding: 3px 9px;
+    border-radius: 6px; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .admin-topbar h2 {
+    font-family: 'Playfair Display', serif; font-size: 1.15rem;
+    font-weight: 700; color: var(--white);
+  }
+
+  .admin-layout { display: flex; min-height: 560px; }
+
+  /* Sidebar */
+  .admin-sidebar {
+    width: 210px; flex-shrink: 0;
+    background: #060e1d;
+    display: flex; flex-direction: column;
+    padding: 1.25rem 0;
+    border-right: 1px solid rgba(255,255,255,0.05);
+  }
+  .admin-sidebar-label {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(255,255,255,0.25);
+    padding: 0 1.25rem; margin: 1rem 0 0.5rem;
+  }
+  .admin-nav-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 0.7rem 1.25rem; cursor: pointer;
+    font-size: 0.87rem; color: rgba(255,255,255,0.5);
+    transition: all 0.15s; border-left: 3px solid transparent;
+    font-weight: 500;
+  }
+  .admin-nav-item i { width: 18px; text-align: center; font-size: 0.9rem; }
+  .admin-nav-item:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.04); }
+  .admin-nav-item.active {
+    color: var(--gold-light); background: rgba(201,146,42,0.1);
+    border-left-color: var(--gold);
+  }
+
+  /* Admin content area */
+  .admin-content { flex: 1; padding: 1.75rem; overflow-y: auto; background: var(--off-white); }
+  .admin-panel { display: none; }
+  .admin-panel.active { display: block; }
+
+  .admin-panel-title {
+    font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700;
+    color: var(--navy); margin-bottom: 0.3rem;
+  }
+  .admin-panel-desc { font-size: 0.82rem; color: var(--text-mid); margin-bottom: 1.5rem; }
+
+  /* Admin table */
+  .admin-table-wrap { background: var(--white); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; margin-bottom: 1.5rem; }
+  .admin-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  .admin-table th { background: var(--navy); color: var(--white); padding: 0.65rem 1rem; text-align: left; font-size: 0.75rem; font-weight: 600; }
+  .admin-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .admin-table tr:last-child td { border-bottom: none; }
+  .admin-table tr:hover td { background: var(--gold-pale); }
+  .admin-thumb { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); }
+  .admin-thumb-placeholder {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--gold-light); font-weight: 700; font-size: 0.9rem;
+  }
+
+  /* Action buttons */
+  .btn-edit {
+    background: #dbeafe; color: #1e40af; border: none;
+    padding: 4px 12px; border-radius: 6px; cursor: pointer;
+    font-size: 0.78rem; font-weight: 600; margin-right: 4px; transition: all 0.15s;
+  }
+  .btn-edit:hover { background: #bfdbfe; }
+  .btn-del {
+    background: #fee2e2; color: #dc2626; border: none;
+    padding: 4px 12px; border-radius: 6px; cursor: pointer;
+    font-size: 0.78rem; font-weight: 600; transition: all 0.15s;
+  }
+  .btn-del:hover { background: #fecaca; }
+  .btn-success {
+    background: var(--success); color: var(--white); border: none;
+    padding: 0.6rem 1.4rem; border-radius: 8px; cursor: pointer;
+    font-weight: 700; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px;
+    transition: all 0.2s;
+  }
+  .btn-success:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-navy {
+    background: var(--navy); color: var(--white); border: none;
+    padding: 0.6rem 1.4rem; border-radius: 8px; cursor: pointer;
+    font-weight: 700; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px;
+    transition: all 0.2s; margin-right: 0.5rem;
+  }
+  .btn-navy:hover { background: var(--navy-light); }
+
+  /* Collapsible Add/Edit form */
+  .admin-form-card {
+    background: var(--white); border-radius: var(--radius); border: 1px solid var(--border);
+    padding: 1.5rem; margin-bottom: 1rem;
+  }
+  .admin-form-title {
+    font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700;
+    color: var(--navy); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 8px;
+  }
+  .admin-form-title i { color: var(--gold); }
+  .admin-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .admin-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+  .admin-field { margin-bottom: 0.9rem; }
+  .admin-field label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--text-dark); margin-bottom: 5px; }
+  .admin-field input, .admin-field textarea, .admin-field select {
+    width: 100%; padding: 0.65rem 0.9rem; border-radius: 8px;
+    border: 1.5px solid var(--border); font-family: 'DM Sans', sans-serif;
+    font-size: 0.87rem; outline: none; transition: border 0.2s; background: var(--white);
+  }
+  .admin-field input:focus, .admin-field textarea:focus, .admin-field select:focus { border-color: var(--navy); }
+  .admin-field textarea { height: 80px; resize: none; }
+
+  /* Photo upload area */
+  .photo-upload-area {
+    border: 2px dashed var(--border); border-radius: 10px; padding: 1.25rem;
+    text-align: center; cursor: pointer; transition: all 0.2s; position: relative;
+    background: var(--off-white);
+  }
+  .photo-upload-area:hover { border-color: var(--gold); background: var(--gold-pale); }
+  .photo-upload-area input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+    border: none; padding: 0;
+  }
+  .photo-preview-wrap { margin-top: 0.75rem; }
+  .photo-preview {
+    width: 90px; height: 90px; border-radius: 50%; object-fit: cover;
+    border: 3px solid var(--gold); display: block; margin: 0 auto;
+  }
+  .photo-upload-icon { font-size: 1.8rem; color: var(--text-light); margin-bottom: 6px; }
+  .photo-upload-text { font-size: 0.8rem; color: var(--text-mid); }
+  .photo-upload-hint { font-size: 0.72rem; color: var(--text-light); margin-top: 3px; }
+  .photo-url-toggle { font-size: 0.75rem; color: var(--gold); cursor: pointer; text-decoration: underline; margin-top: 6px; display: inline-block; }
+
+  /* Star rating display in admin */
+  .admin-rating-row { display: flex; align-items: center; gap: 8px; }
+  .admin-rating-row input[type="range"] { flex: 1; accent-color: var(--gold); }
+
+  /* Toast notification */
+  .admin-toast {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 9999;
+    background: var(--navy); color: var(--white);
+    padding: 0.85rem 1.5rem; border-radius: 10px;
+    font-size: 0.88rem; font-weight: 500;
+    box-shadow: var(--shadow-lg);
+    display: flex; align-items: center; gap: 10px;
+    transform: translateY(80px); opacity: 0;
+    transition: all 0.3s ease; pointer-events: none;
+    border-left: 4px solid var(--gold);
+  }
+  .admin-toast.show { transform: translateY(0); opacity: 1; }
+  .admin-toast.success { border-left-color: var(--success); }
+  .admin-toast.error { border-left-color: var(--danger); }
+
+  /* Stats cards in admin dashboard */
+  .admin-stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+  .admin-stat-card {
+    background: var(--white); border-radius: var(--radius); padding: 1.25rem;
+    border: 1px solid var(--border); text-align: center;
+  }
+  .admin-stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--navy); }
+  .admin-stat-lbl { font-size: 0.75rem; color: var(--text-mid); margin-top: 3px; }
+
+  .divider { height: 1px; background: var(--border); margin: 1.25rem 0; }
+
+  @media (max-width: 700px) {
+    .admin-layout { flex-direction: column; }
+    .admin-sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; padding: 0.5rem; }
+    .admin-nav-item { border-left: none; border-bottom: 3px solid transparent; padding: 0.5rem 0.75rem; font-size: 0.8rem; }
+    .admin-nav-item.active { border-bottom-color: var(--gold); border-left: none; }
+    .admin-sidebar-label { display: none; }
+    .admin-grid-2, .admin-grid-3 { grid-template-columns: 1fr; }
+    .admin-stats-row { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ═══════════════════════════════════════
+     STUDENT PROFILE STYLES
+  ═══════════════════════════════════════ */
+  .profile-layout {
+    display: grid; grid-template-columns: 260px 1fr; gap: 1.5rem;
+  }
+  /* Left column: ID card */
+  .profile-id-card {
+    background: linear-gradient(160deg, var(--navy), var(--navy-light));
+    border-radius: var(--radius-lg); padding: 1.75rem 1.5rem;
+    text-align: center; position: relative; overflow: hidden;
+    border: 1px solid rgba(201,146,42,0.2);
+  }
+  .profile-id-card::before {
+    content: 'LSI'; position: absolute; bottom: -18px; right: -10px;
+    font-family: 'Playfair Display', serif; font-size: 5rem; font-weight: 900;
+    color: rgba(255,255,255,0.04); pointer-events: none; line-height: 1;
+  }
+  .profile-avatar-wrap { position: relative; display: inline-block; margin-bottom: 1rem; }
+  .profile-avatar {
+    width: 100px; height: 100px; border-radius: 50%; object-fit: cover;
+    border: 3px solid rgba(201,146,42,0.6);
+    box-shadow: 0 0 0 5px rgba(201,146,42,0.12);
+    background: var(--navy-light);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 2rem;
+    font-weight: 700; color: var(--gold-light);
+  }
+  .profile-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .profile-cam-btn {
+    position: absolute; bottom: 2px; right: 2px;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--gold); border: 2px solid var(--white);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 0.7rem; color: var(--navy);
+    transition: all 0.2s;
+  }
+  .profile-cam-btn:hover { background: var(--gold-light); transform: scale(1.1); }
+  .profile-cam-input { position: absolute; inset: 0; opacity: 0; cursor: pointer; border-radius: 50%; }
+  .profile-id-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 4px;
+  }
+  .profile-id-grade { font-size: 0.78rem; color: rgba(255,255,255,0.55); margin-bottom: 1.25rem; }
+  .profile-id-badge {
+    display: inline-block; background: rgba(201,146,42,0.2);
+    border: 1px solid rgba(201,146,42,0.4); color: var(--gold-light);
+    font-size: 0.78rem; font-weight: 700; padding: 4px 14px;
+    border-radius: 20px; letter-spacing: 0.06em; margin-bottom: 1.25rem;
+  }
+  .profile-id-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 1rem 0; }
+  .profile-id-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 5px 0; font-size: 0.78rem;
+  }
+  .profile-id-row-label { color: rgba(255,255,255,0.4); }
+  .profile-id-row-val { color: rgba(255,255,255,0.85); font-weight: 600; }
+  .profile-id-footer {
+    margin-top: 1.25rem; padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.68rem; color: rgba(255,255,255,0.25); letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* Right column: edit forms */
+  .profile-forms { display: flex; flex-direction: column; gap: 1rem; }
+  .profile-section {
+    background: var(--white); border-radius: var(--radius);
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .profile-section-header {
+    background: var(--off-white); padding: 0.85rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+    font-weight: 700; font-size: 0.9rem; color: var(--navy);
+    cursor: pointer; user-select: none;
+    justify-content: space-between;
+  }
+  .profile-section-header .psec-left { display: flex; align-items: center; gap: 8px; }
+  .profile-section-header i.psec-icon { color: var(--gold); }
+  .profile-section-toggle { color: var(--text-light); font-size: 0.75rem; transition: transform 0.25s; }
+  .profile-section.open .profile-section-toggle { transform: rotate(180deg); }
+  .profile-section-body { padding: 1.25rem; display: none; }
+  .profile-section.open .profile-section-body { display: block; }
+
+  .prof-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .prof-field { margin-bottom: 0.9rem; }
+  .prof-field label {
+    display: block; font-size: 0.78rem; font-weight: 600;
+    color: var(--text-dark); margin-bottom: 5px;
+  }
+  .prof-field input, .prof-field textarea, .prof-field select {
+    width: 100%; padding: 0.65rem 0.9rem; border-radius: 8px;
+    border: 1.5px solid var(--border); font-family: 'DM Sans', sans-serif;
+    font-size: 0.87rem; outline: none; transition: border 0.2s; background: var(--white);
+    color: var(--text-dark);
+  }
+  .prof-field input:focus, .prof-field textarea:focus { border-color: var(--navy); }
+  .prof-field textarea { height: 80px; resize: none; }
+  .prof-field input[readonly] { background: var(--off-white); color: var(--text-light); cursor: not-allowed; }
+  .prof-save-btn {
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    color: var(--white); border: none; padding: 0.6rem 1.4rem;
+    border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 0.85rem;
+    display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s;
+    margin-top: 0.25rem;
+  }
+  .prof-save-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+  .prof-save-btn.gold-btn {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy);
+  }
+  .prof-success-msg {
+    display: none; margin-top: 0.75rem; padding: 0.6rem 1rem;
+    background: #dcfce7; border: 1px solid #86efac; border-radius: 8px;
+    font-size: 0.82rem; color: var(--success); font-weight: 500;
+  }
+  .prof-error-msg {
+    display: none; margin-top: 0.75rem; padding: 0.6rem 1rem;
+    background: #fee2e2; border: 1px solid #fca5a5; border-radius: 8px;
+    font-size: 0.82rem; color: var(--danger); font-weight: 500;
+  }
+  .photo-upload-ring {
+    border: 2px dashed var(--border); border-radius: 10px;
+    padding: 1.25rem; text-align: center; cursor: pointer;
+    transition: all 0.2s; position: relative; background: var(--off-white);
+    margin-bottom: 0.75rem;
+  }
+  .photo-upload-ring:hover { border-color: var(--gold); background: var(--gold-pale); }
+  .photo-upload-ring input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+  }
+
+  @media (max-width: 750px) {
+    .profile-layout { grid-template-columns: 1fr; }
+    .prof-grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAVBAR ─── -->
+<nav class="navbar">
+  <a href="#home" class="nav-brand">
+    <div class="nav-logo-icon">LSI</div>
+    <div class="nav-brand-text">
+      <span class="nav-brand-main">Liberia Statistics Institute</span>
+      <span class="nav-brand-sub">Excellence in Statistical Sciences</span>
+    </div>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="#about">About</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#founder">Founder</a></li>
+    <li><a href="#teachers">Faculty</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#" id="loginBtn" class="nav-login-btn"><i class="fas fa-user-lock"></i> Student Portal</a></li>
+    <li><a href="#" id="adminNavBtn" class="nav-admin-btn"><i class="fas fa-cog"></i> Admin</a></li>
+  </ul>
+  <div class="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="home" class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-decoration"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-chart-bar"></i>
+        Liberia's Premier Statistics Institution
+      </div>
+      <h1 class="hero-title">
+        Shaping <span class="accent">Statistical</span><br>
+        Minds for Africa's<br>Future
+      </h1>
+      <p class="hero-desc">
+        The Liberia Statistics Institute offers world-class programs in statistical sciences, data analysis, econometrics, and research methodology — empowering the next generation of quantitative leaders.
+      </p>
+      <div class="hero-actions">
+        <a href="#programs" class="btn-primary">
+          <i class="fas fa-graduation-cap"></i> Explore Programs
+        </a>
+        <a href="#" id="heroLoginBtn" class="btn-outline">
+          <i class="fas fa-sign-in-alt"></i> Student Portal
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">1,200+</div>
+          <div class="hero-stat-label">Enrolled Students</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">48</div>
+          <div class="hero-stat-label">Expert Faculty</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">15+</div>
+          <div class="hero-stat-label">Years of Excellence</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">95%</div>
+          <div class="hero-stat-label">Graduate Employment</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT / FEATURES ─── -->
+<section id="about">
+  <div class="container">
+    <div class="features-header">
+      <div class="section-label">Why Choose LSI</div>
+      <h2 class="section-title">A Center of Statistical Excellence</h2>
+      <p class="section-desc">We combine rigorous academic training with practical data skills to prepare students for careers in government, industry, and research.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-flask"></i></div>
+        <div class="feature-title">Research-Led Learning</div>
+        <p class="feature-desc">All courses are informed by active research in applied statistics, econometrics, and national survey methodology — ensuring relevance to real-world problems.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-laptop-code"></i></div>
+        <div class="feature-title">Statistical Computing Labs</div>
+        <p class="feature-desc">State-of-the-art computer labs equipped with R, SAS, SPSS, Python, and STATA, offering hands-on training in modern analytical software.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-globe-africa"></i></div>
+        <div class="feature-title">National & Regional Impact</div>
+        <p class="feature-desc">We collaborate with LISGIS, World Bank, AfDB, and UN agencies to deliver data solutions that directly inform Liberia's development policies.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-users"></i></div>
+        <div class="feature-title">Expert Faculty</div>
+        <p class="feature-desc">Learn from experienced statisticians, econometricians, and data scientists with PhDs from leading global universities and decades of applied experience.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-award"></i></div>
+        <div class="feature-title">Accredited Programs</div>
+        <p class="feature-desc">Our degree programs are fully accredited by Liberia's National Commission on Higher Education with international recognition across West Africa.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-handshake"></i></div>
+        <div class="feature-title">Industry Partnerships</div>
+        <p class="feature-desc">Strong ties with banks, telecom companies, NGOs, and the government create robust internship and job placement pipelines for graduates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROGRAMS ─── -->
+<section id="programs">
+  <div class="container">
+    <div class="programs-layout">
+      <div>
+        <div class="section-label">Academic Programs</div>
+        <h2 class="section-title">Degrees in Statistical Sciences</h2>
+        <p class="section-desc">We offer undergraduate, postgraduate, and certificate programs designed to build quantitative expertise from the ground up.</p>
+        <ul class="course-list" style="margin-top:1.75rem">
+          <li><i class="fas fa-check-circle"></i> Foundations of Probability and Statistics</li>
+          <li><i class="fas fa-check-circle"></i> Advanced Statistical Inference</li>
+          <li><i class="fas fa-check-circle"></i> Bayesian Methods and Decision Theory</li>
+          <li><i class="fas fa-check-circle"></i> Survey Sampling and Design</li>
+          <li><i class="fas fa-check-circle"></i> Time Series Analysis and Forecasting</li>
+          <li><i class="fas fa-check-circle"></i> Econometrics and Applied Regression</li>
+          <li><i class="fas fa-check-circle"></i> Statistical Computing with R & Python</li>
+          <li><i class="fas fa-check-circle"></i> Biostatistics and Public Health Data</li>
+        </ul>
+      </div>
+      <div class="programs-visual">
+        <div class="prog-item">
+          <div class="prog-icon">🎓</div>
+          <div>
+            <div class="prog-name">BSc Statistics</div>
+            <div class="prog-level">Undergraduate · 4 Years</div>
+          </div>
+          <span class="prog-badge">Most Popular</span>
+        </div>
+        <div class="prog-item">
+          <div class="prog-icon">📊</div>
+          <div>
+            <div class="prog-name">BSc Applied Statistics & Data Science</div>
+            <div class="prog-level">Undergraduate · 4 Years</div>
+          </div>
+          <span class="prog-badge">New</span>
+        </div>
+        <div class="prog-item">
+          <div class="prog-icon">📈</div>
+          <div>
+            <div class="prog-name">MSc Statistics</div>
+            <div class="prog-level">Postgraduate · 2 Years</div>
+          </div>
+        </div>
+        <div class="prog-item">
+          <div class="prog-icon">💹</div>
+          <div>
+            <div class="prog-name">MSc Econometrics</div>
+            <div class="prog-level">Postgraduate · 2 Years</div>
+          </div>
+        </div>
+        <div class="prog-item">
+          <div class="prog-icon">🧪</div>
+          <div>
+            <div class="prog-name">PhD Statistics</div>
+            <div class="prog-level">Doctoral · 3–5 Years</div>
+          </div>
+          <span class="prog-badge">Research</span>
+        </div>
+        <div class="prog-item">
+          <div class="prog-icon">📋</div>
+          <div>
+            <div class="prog-name">Professional Certificate</div>
+            <div class="prog-level">Short Course · 6 Months</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOUNDER ─── -->
+<section class="founder-section" id="founder">
+  <div class="founder-inner">
+    <div class="founder-portrait">
+      HK
+      <span class="founder-portrait-badge">Founder</span>
+    </div>
+    <div>
+      <span class="founder-quote-mark">"</span>
+      <div class="founder-name">Mr. Henry Hali Korlee</div>
+      <div class="founder-title">Founder &amp; Executive Director, Liberia Statistics Institute</div>
+      <p class="founder-bio">
+        Mr. Henry Hali Korlee is a distinguished statistician, educator, and civic leader who established the Liberia Statistics Institute with a singular vision: to make statistical literacy a cornerstone of Liberia's national development. A lecturer in the Department of Mathematics and Statistics at the University of Liberia, he simultaneously pursues postgraduate studies in Statistics at the University of Botswana and Financial Engineering at WorldQuant University — embodying the lifelong learning ethos he instills in every LSI student.
+        <br><br>
+        Beyond academia, he serves as CEO of Henria Printing Press and Executive Director of the Sameria Institute of Technology, and leads the development of civic technology infrastructure for Liberia's National Elections Commission in preparation for the 2029 General Elections. His research spans time series analysis, Bayesian inference, survey sampling, and applied econometrics — with a deep commitment to using data science for African development.
+      </p>
+      <div class="founder-credentials">
+        <span class="founder-cred"><i class="fas fa-graduation-cap"></i> BSc Mathematics, University of Liberia</span>
+        <span class="founder-cred"><i class="fas fa-graduation-cap"></i> MA Regional Science, University of Liberia</span>
+        <span class="founder-cred"><i class="fas fa-book-open"></i> MA Statistics (candidate), University of Botswana</span>
+        <span class="founder-cred"><i class="fas fa-chart-line"></i> MScFE (candidate), WorldQuant University</span>
+        <span class="founder-cred"><i class="fas fa-landmark"></i> Lecturer, University of Liberia</span>
+        <span class="founder-cred"><i class="fas fa-vote-yea"></i> NEC Civic Tech Lead, Liberia 2029</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TEACHERS ─── -->
+<section id="teachers">
+  <div class="container">
+    <div class="teachers-header">
+      <div class="section-label">Our Faculty</div>
+      <h2 class="section-title">Expert Statistics Instructors</h2>
+      <p class="section-desc">Our faculty are accomplished statisticians, researchers, and data scientists dedicated to transforming how Liberia uses data.</p>
+    </div>
+    <div class="teachers-grid" id="teachersGrid"></div>
+  </div>
+</section>
+
+<!-- ─── EVENTS ─── -->
+<section id="events">
+  <div class="container">
+    <div class="section-label">Campus Life</div>
+    <h2 class="section-title" style="margin-bottom:0.5rem">Upcoming Events</h2>
+    <p class="section-desc" style="margin-bottom:2.5rem">Academic events, workshops, seminars, and student activities that enrich the LSI experience.</p>
+    <div class="events-layout">
+      <div class="events-list-wrap" id="eventsList"></div>
+      <div class="calendar-wrap">
+        <div class="cal-header">
+          <div class="cal-month" id="calMonthTitle"></div>
+          <div style="display:flex;gap:6px">
+            <button class="cal-nav" id="calPrev">‹</button>
+            <button class="cal-nav" id="calNext">›</button>
+          </div>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-layout">
+      <div>
+        <div class="section-label">Get in Touch</div>
+        <h2 class="section-title">Contact the Institute</h2>
+        <p class="section-desc" style="margin-bottom:2rem">We welcome prospective students, researchers, and institutional partners. Reach out to our admissions and administrative offices.</p>
+        <div class="contact-info-item">
+          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <div class="contact-info-label">Address</div>
+            <div class="contact-info-val">Capitol Hill, Monrovia, Liberia</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon"><i class="fas fa-phone"></i></div>
+          <div>
+            <div class="contact-info-label">Telephone</div>
+            <div class="contact-info-val">+231 770 123 456</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <div class="contact-info-label">Email</div>
+            <div class="contact-info-val">info@lsi.edu.lr</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon"><i class="fas fa-clock"></i></div>
+          <div>
+            <div class="contact-info-label">Office Hours</div>
+            <div class="contact-info-val">Mon–Fri: 8:00 AM – 5:00 PM</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3 style="font-family:'Playfair Display',serif;color:var(--white);margin-bottom:1.25rem;font-size:1.2rem">Send Us a Message</h3>
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="e.g. Henry" required>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="e.g. Korlee" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <select>
+              <option>Admissions Inquiry</option>
+              <option>Program Information</option>
+              <option>Research Collaboration</option>
+              <option>Student Affairs</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Write your message here..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%;justify-content:center">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+          <div id="formMessage"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="nav-brand" style="text-decoration:none;display:flex;gap:10px;align-items:center">
+          <div class="nav-logo-icon" style="width:38px;height:38px;font-size:1rem">LSI</div>
+          <div>
+            <div class="nav-brand-main">Liberia Statistics Institute</div>
+            <div class="nav-brand-sub">Excellence in Statistical Sciences</div>
+          </div>
+        </div>
+        <p class="footer-brand-desc" style="margin-top:1rem">Empowering Liberians with statistical knowledge and data science skills to drive evidence-based national development since 2009.</p>
+        <form class="newsletter-form" style="margin-top:1rem">
+          <input type="email" placeholder="Subscribe to newsletter…">
+          <button type="submit"><i class="fas fa-arrow-right"></i></button>
+        </form>
+      </div>
+      <div>
+        <div class="footer-heading">Programs</div>
+        <ul class="footer-links">
+          <li><a href="#">BSc Statistics</a></li>
+          <li><a href="#">BSc Applied Statistics</a></li>
+          <li><a href="#">MSc Statistics</a></li>
+          <li><a href="#">MSc Econometrics</a></li>
+          <li><a href="#">PhD Statistics</a></li>
+          <li><a href="#">Certificate Courses</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="#about">About LSI</a></li>
+          <li><a href="#teachers">Faculty</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#">Admissions</a></li>
+          <li><a href="#">Research</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Resources</div>
+        <ul class="footer-links">
+          <li><a href="#">Student Portal</a></li>
+          <li><a href="#">Library</a></li>
+          <li><a href="#">Statistical Lab</a></li>
+          <li><a href="#">Research Journal</a></li>
+          <li><a href="#">Alumni Network</a></li>
+          <li><a href="#">Scholarships</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Liberia Statistics Institute. All rights reserved. &nbsp;|&nbsp; Founded by <strong style="color:var(--gold-light)">Mr. Henry Hali Korlee</strong></div>
+      <div class="footer-socials">
+        <a href="#" class="footer-social"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="footer-social"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="footer-social"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="footer-social"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── LOGIN MODAL ─── -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal-box login-modal">
+    <button class="modal-close close"><i class="fas fa-times"></i></button>
+    <div class="login-logo">
+      <div class="login-logo-icon"><i class="fas fa-chart-line"></i></div>
+      <h2>Student Portal</h2>
+      <p>Liberia Statistics Institute</p>
+    </div>
+    <form id="studentLoginForm">
+      <div class="login-field">
+        <label>Student ID</label>
+        <input type="text" id="studentId" placeholder="e.g. S001" required>
+      </div>
+      <div class="login-field">
+        <label>Password</label>
+        <input type="password" id="studentPassword" placeholder="Enter your password" required>
+      </div>
+      <button type="submit" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login to Portal</button>
+    </form>
+    <div class="login-hint">
+      Demo: <strong>S001/S001</strong> · <strong>S002/S002</strong> · <strong>S003/S003</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ─── DASHBOARD MODAL ─── -->
+<div class="modal-overlay" id="dashboardModal">
+  <div class="modal-box dashboard-modal">
+    <div class="dash-header">
+      <div style="display:flex;align-items:center;gap:1rem">
+        <!-- Avatar in header -->
+        <div id="dashAvatarWrap" style="position:relative;flex-shrink:0">
+          <div id="dashAvatar" style="width:46px;height:46px;border-radius:50%;border:2px solid rgba(201,146,42,0.5);background:var(--navy-light);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:1.1rem;color:var(--gold-light);overflow:hidden">
+            <span id="dashAvatarInitials">?</span>
+            <img id="dashAvatarImg" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:50%">
+          </div>
+        </div>
+        <div>
+          <div class="dash-title" id="studentName">Student Dashboard</div>
+          <div class="dash-subtitle">Liberia Statistics Institute — Academic Portal</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:0.75rem;align-items:center">
+        <button class="download-btn" id="downloadReport"><i class="fas fa-download"></i> Download Report</button>
+        <button class="modal-close close-dashboard" style="position:static;background:rgba(255,255,255,0.1);color:#fff"><i class="fas fa-times"></i></button>
+      </div>
+    </div>
+    <div class="dash-body">
+      <div class="dash-stats">
+        <div class="dash-stat-card">
+          <div class="dash-stat-num" id="currentGPA">—</div>
+          <div class="dash-stat-label">Current GPA</div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-num" id="overallPercent">—</div>
+          <div class="dash-stat-label">Overall Score</div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-num" id="presentDays">—</div>
+          <div class="dash-stat-label">Days Present</div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-num" id="attendanceRate">—</div>
+          <div class="dash-stat-label">Attendance Rate</div>
+        </div>
+      </div>
+      <div class="tab-nav">
+        <button class="tab-btn active" data-tab="grades"><i class="fas fa-clipboard-list"></i> Grades</button>
+        <button class="tab-btn" data-tab="attendance"><i class="fas fa-calendar-check"></i> Attendance</button>
+        <button class="tab-btn" data-tab="schedule"><i class="fas fa-clock"></i> Schedule</button>
+        <button class="tab-btn" data-tab="evaluation"><i class="fas fa-star"></i> Evaluate Faculty</button>
+        <button class="tab-btn" data-tab="profile" style="margin-left:auto;color:var(--gold)"><i class="fas fa-user-edit"></i> My Profile</button>
+      </div>
+
+      <!-- GRADES TAB -->
+      <div id="gradesTab" class="tab-content active">
+        <table class="grades-table">
+          <thead><tr><th>Course</th><th>Score</th><th>Grade</th><th>Status</th></tr></thead>
+          <tbody id="gradesTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- ATTENDANCE TAB -->
+      <div id="attendanceTab" class="tab-content">
+        <div class="attendance-grid">
+          <div class="att-card"><div class="att-num" id="presentDays2">—</div><div class="att-label">Days Present</div></div>
+          <div class="att-card"><div class="att-num" id="absentDays">—</div><div class="att-label">Days Absent</div></div>
+          <div class="att-card"><div class="att-num" id="attendanceRate2">—</div><div class="att-label">Attendance Rate</div></div>
+        </div>
+        <div style="margin-top:0.5rem">
+          <div style="font-size:0.8rem;color:var(--text-mid);margin-bottom:6px">Attendance Progress</div>
+          <div class="att-bar-wrap"><div class="att-bar" id="attProgressBar" style="width:0%"></div></div>
+        </div>
+      </div>
+
+      <!-- SCHEDULE TAB -->
+      <div id="scheduleTab" class="tab-content">
+        <table class="schedule-table">
+          <thead><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr></thead>
+          <tbody id="scheduleTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- EVALUATION TAB -->
+      <div id="evaluationTab" class="tab-content">
+        <p style="font-size:0.85rem;color:var(--text-mid);margin-bottom:1.25rem">Please rate and leave feedback for each faculty member. Your evaluations are confidential and help improve course quality.</p>
+        <div id="evaluationForm"></div>
+      </div>
+
+      <!-- PROFILE TAB -->
+      <div id="profileTab" class="tab-content">
+        <div class="profile-layout">
+
+          <!-- Student ID Card -->
+          <div class="profile-id-card">
+            <div class="profile-avatar-wrap">
+              <div class="profile-avatar" id="profileAvatarCircle">
+                <span id="profileAvatarInitials">?</span>
+                <img id="profileAvatarImg" src="" alt="" style="display:none;position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover">
+              </div>
+              <label class="profile-cam-btn" title="Change photo">
+                <i class="fas fa-camera"></i>
+                <input type="file" class="profile-cam-input" id="profilePhotoInput" accept="image/*">
+              </label>
+            </div>
+            <div class="profile-id-name" id="idCardName">—</div>
+            <div class="profile-id-grade" id="idCardGrade">—</div>
+            <span class="profile-id-badge" id="idCardBadge">Student</span>
+            <div class="profile-id-divider"></div>
+            <div class="profile-id-row">
+              <span class="profile-id-row-label">Student ID</span>
+              <span class="profile-id-row-val" id="idCardID">—</span>
+            </div>
+            <div class="profile-id-row">
+              <span class="profile-id-row-label">Email</span>
+              <span class="profile-id-row-val" id="idCardEmail" style="font-size:0.72rem">—</span>
+            </div>
+            <div class="profile-id-row">
+              <span class="profile-id-row-label">Phone</span>
+              <span class="profile-id-row-val" id="idCardPhone">—</span>
+            </div>
+            <div class="profile-id-row">
+              <span class="profile-id-row-label">GPA</span>
+              <span class="profile-id-row-val" id="idCardGPA" style="color:var(--gold-light)">—</span>
+            </div>
+            <div class="profile-id-row">
+              <span class="profile-id-row-label">Attendance</span>
+              <span class="profile-id-row-val" id="idCardAtt">—</span>
+            </div>
+            <div class="profile-id-footer">Liberia Statistics Institute · 2025</div>
+          </div>
+
+          <!-- Edit Forms -->
+          <div class="profile-forms">
+
+            <!-- Personal Info -->
+            <div class="profile-section open" id="psec-personal">
+              <div class="profile-section-header" onclick="toggleProfileSection('psec-personal')">
+                <span class="psec-left"><i class="fas fa-user psec-icon"></i> Personal Information</span>
+                <i class="fas fa-chevron-down profile-section-toggle"></i>
+              </div>
+              <div class="profile-section-body">
+                <div class="prof-grid-2">
+                  <div class="prof-field">
+                    <label>Full Name</label>
+                    <input type="text" id="profName" placeholder="Your full name">
+                  </div>
+                  <div class="prof-field">
+                    <label>Student ID <small style="color:var(--text-light)">(cannot change)</small></label>
+                    <input type="text" id="profId" readonly>
+                  </div>
+                </div>
+                <div class="prof-grid-2">
+                  <div class="prof-field">
+                    <label>Date of Birth</label>
+                    <input type="date" id="profDob">
+                  </div>
+                  <div class="prof-field">
+                    <label>Gender</label>
+                    <select id="profGender">
+                      <option value="">Select…</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Prefer not to say">Prefer not to say</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="prof-field">
+                  <label>Bio / About Me</label>
+                  <textarea id="profBio" placeholder="Write a short bio about yourself…"></textarea>
+                </div>
+                <button class="prof-save-btn" onclick="savePersonalInfo()"><i class="fas fa-save"></i> Save Personal Info</button>
+                <div class="prof-success-msg" id="personalSuccessMsg">✓ Personal information saved successfully.</div>
+              </div>
+            </div>
+
+            <!-- Contact Details -->
+            <div class="profile-section" id="psec-contact">
+              <div class="profile-section-header" onclick="toggleProfileSection('psec-contact')">
+                <span class="psec-left"><i class="fas fa-address-card psec-icon"></i> Contact Details</span>
+                <i class="fas fa-chevron-down profile-section-toggle"></i>
+              </div>
+              <div class="profile-section-body">
+                <div class="prof-grid-2">
+                  <div class="prof-field">
+                    <label>Email Address</label>
+                    <input type="email" id="profEmail" placeholder="your@email.com">
+                  </div>
+                  <div class="prof-field">
+                    <label>Phone Number</label>
+                    <input type="tel" id="profPhone" placeholder="+231 770 000 000">
+                  </div>
+                </div>
+                <div class="prof-grid-2">
+                  <div class="prof-field">
+                    <label>County / City</label>
+                    <input type="text" id="profCity" placeholder="e.g. Monrovia, Montserrado">
+                  </div>
+                  <div class="prof-field">
+                    <label>Nationality</label>
+                    <input type="text" id="profNationality" placeholder="e.g. Liberian">
+                  </div>
+                </div>
+                <button class="prof-save-btn" onclick="saveContactInfo()"><i class="fas fa-save"></i> Save Contact Info</button>
+                <div class="prof-success-msg" id="contactSuccessMsg">✓ Contact details saved successfully.</div>
+              </div>
+            </div>
+
+            <!-- Profile Photo -->
+            <div class="profile-section" id="psec-photo">
+              <div class="profile-section-header" onclick="toggleProfileSection('psec-photo')">
+                <span class="psec-left"><i class="fas fa-camera psec-icon"></i> Profile Photo</span>
+                <i class="fas fa-chevron-down profile-section-toggle"></i>
+              </div>
+              <div class="profile-section-body">
+                <div class="photo-upload-ring" id="profileDropZone">
+                  <input type="file" id="profilePhotoInput2" accept="image/*">
+                  <div id="profileUploadPlaceholder">
+                    <div style="font-size:2rem;color:var(--text-light);margin-bottom:6px"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <div style="font-size:0.85rem;color:var(--text-mid)">Click or drag a photo to upload</div>
+                    <div style="font-size:0.75rem;color:var(--text-light);margin-top:4px">JPG, PNG, WEBP supported</div>
+                  </div>
+                </div>
+                <div id="profilePhotoPreviewWrap" style="display:none;text-align:center;margin-bottom:0.75rem">
+                  <img id="profilePhotoPreview" src="" alt="Preview" style="width:100px;height:100px;border-radius:50%;object-fit:cover;border:3px solid var(--gold)">
+                  <div style="margin-top:6px">
+                    <button type="button" onclick="clearProfilePhoto()" style="font-size:0.75rem;color:var(--danger);background:none;border:none;cursor:pointer"><i class="fas fa-trash"></i> Remove photo</button>
+                  </div>
+                </div>
+                <button class="prof-save-btn gold-btn" onclick="saveProfilePhoto()"><i class="fas fa-image"></i> Save Photo</button>
+                <div class="prof-success-msg" id="photoSuccessMsg">✓ Profile photo updated.</div>
+              </div>
+            </div>
+
+            <!-- Change Password -->
+            <div class="profile-section" id="psec-password">
+              <div class="profile-section-header" onclick="toggleProfileSection('psec-password')">
+                <span class="psec-left"><i class="fas fa-lock psec-icon"></i> Change Password</span>
+                <i class="fas fa-chevron-down profile-section-toggle"></i>
+              </div>
+              <div class="profile-section-body">
+                <div class="prof-field">
+                  <label>Current Password</label>
+                  <input type="password" id="profOldPass" placeholder="Enter current password">
+                </div>
+                <div class="prof-grid-2">
+                  <div class="prof-field">
+                    <label>New Password</label>
+                    <input type="password" id="profNewPass" placeholder="At least 4 characters">
+                  </div>
+                  <div class="prof-field">
+                    <label>Confirm New Password</label>
+                    <input type="password" id="profConfirmPass" placeholder="Repeat new password">
+                  </div>
+                </div>
+                <button class="prof-save-btn" onclick="changeStudentPassword()"><i class="fas fa-key"></i> Update Password</button>
+                <div class="prof-success-msg" id="passSuccessMsg">✓ Password changed successfully.</div>
+                <div class="prof-error-msg"   id="passErrorMsg"></div>
+              </div>
+            </div>
+
+          </div><!-- end profile-forms -->
+        </div><!-- end profile-layout -->
+      </div><!-- end profileTab -->
+
+    </div><!-- end dash-body -->
+  </div>
+</div>
+
+<!-- ─── ADMIN LOGIN MODAL ─── -->
+<div class="modal-overlay" id="adminLoginModal">
+  <div class="modal-box login-modal">
+    <button class="modal-close" id="closeAdminLogin"><i class="fas fa-times"></i></button>
+    <div class="login-logo">
+      <div class="login-logo-icon" style="background:linear-gradient(135deg,var(--gold),var(--gold-light))"><i class="fas fa-cog" style="color:var(--navy)"></i></div>
+      <h2>Admin Panel</h2>
+      <p>Liberia Statistics Institute</p>
+    </div>
+    <form id="adminLoginForm">
+      <div class="login-field">
+        <label>Admin Username</label>
+        <input type="text" id="adminUser" placeholder="e.g. admin" required>
+      </div>
+      <div class="login-field">
+        <label>Admin Password</label>
+        <input type="password" id="adminPass" placeholder="Enter admin password" required>
+      </div>
+      <button type="submit" class="login-btn" style="background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy)">
+        <i class="fas fa-lock-open"></i> Access Admin Panel
+      </button>
+    </form>
+    <div class="login-hint">Default credentials: <strong>admin / LSI@2025</strong></div>
+  </div>
+</div>
+
+<!-- ─── ADMIN PANEL MODAL ─── -->
+<div class="modal-overlay" id="adminPanelModal">
+  <div class="modal-box admin-modal">
+
+    <!-- Top bar -->
+    <div class="admin-topbar">
+      <div class="admin-topbar-left">
+        <span class="admin-badge">Admin</span>
+        <h2>Management Panel — Liberia Statistics Institute</h2>
+      </div>
+      <button class="modal-close" id="closeAdminPanel" style="position:static;background:rgba(255,255,255,0.1);color:#fff"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div class="admin-layout">
+
+      <!-- Sidebar nav -->
+      <div class="admin-sidebar">
+        <div class="admin-sidebar-label">Overview</div>
+        <div class="admin-nav-item active" data-panel="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</div>
+        <div class="admin-sidebar-label">Content</div>
+        <div class="admin-nav-item" data-panel="teachers"><i class="fas fa-chalkboard-teacher"></i> Teachers</div>
+        <div class="admin-nav-item" data-panel="students"><i class="fas fa-user-graduate"></i> Students</div>
+        <div class="admin-nav-item" data-panel="events"><i class="fas fa-calendar-alt"></i> Events</div>
+        <div class="admin-sidebar-label">System</div>
+        <div class="admin-nav-item" data-panel="settings"><i class="fas fa-sliders-h"></i> Settings</div>
+      </div>
+
+      <!-- Content area -->
+      <div class="admin-content">
+
+        <!-- DASHBOARD PANEL -->
+        <div class="admin-panel active" id="panel-dashboard">
+          <div class="admin-panel-title">Welcome back, Mr. Henry Hali Korlee</div>
+          <div class="admin-panel-desc">Here's a quick overview of the Institute's current data.</div>
+          <div class="admin-stats-row">
+            <div class="admin-stat-card">
+              <div class="admin-stat-num" id="stat-teachers">6</div>
+              <div class="admin-stat-lbl">Faculty Members</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="admin-stat-num" id="stat-students">3</div>
+              <div class="admin-stat-lbl">Students on Record</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="admin-stat-num" id="stat-events">8</div>
+              <div class="admin-stat-lbl">Upcoming Events</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="admin-stat-num">2025</div>
+              <div class="admin-stat-lbl">Academic Year</div>
+            </div>
+          </div>
+          <div class="admin-form-card" style="background:linear-gradient(135deg,var(--navy),var(--navy-light));color:white">
+            <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;margin-bottom:0.5rem;color:var(--gold-light)"><i class="fas fa-info-circle"></i> Quick Guide</div>
+            <ul style="font-size:0.85rem;color:rgba(255,255,255,0.75);line-height:2;padding-left:1.2rem">
+              <li>Go to <strong style="color:var(--gold-light)">Teachers</strong> to add, edit, or delete faculty profiles and upload their photos</li>
+              <li>Go to <strong style="color:var(--gold-light)">Students</strong> to view and update student records</li>
+              <li>Go to <strong style="color:var(--gold-light)">Events</strong> to add or remove upcoming events</li>
+              <li>Go to <strong style="color:var(--gold-light)">Settings</strong> to change your admin password</li>
+              <li>All changes are <strong style="color:var(--gold-light)">saved automatically</strong> in your browser</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- TEACHERS PANEL -->
+        <div class="admin-panel" id="panel-teachers">
+          <div class="admin-panel-title"><i class="fas fa-chalkboard-teacher" style="color:var(--gold);margin-right:8px"></i>Faculty Management</div>
+          <div class="admin-panel-desc">Add new teachers, edit profiles, upload photos, or remove faculty members. Changes appear on the website instantly.</div>
+
+          <!-- Current teachers table -->
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr><th>Photo</th><th>Name</th><th>Subject</th><th>Rating</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="adminTeachersTable"></tbody>
+            </table>
+          </div>
+
+          <!-- Add / Edit Teacher Form -->
+          <div class="admin-form-card" id="teacherFormCard">
+            <div class="admin-form-title"><i class="fas fa-user-plus"></i> <span id="teacherFormLabel">Add New Teacher</span></div>
+            <input type="hidden" id="editTeacherId" value="">
+
+            <!-- Photo upload -->
+            <div class="admin-field">
+              <label>Teacher Photo</label>
+              <div class="photo-upload-area" id="photoUploadArea">
+                <input type="file" id="teacherPhotoFile" accept="image/*">
+                <div id="photoUploadContent">
+                  <div class="photo-upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                  <div class="photo-upload-text">Click or drag a photo here to upload</div>
+                  <div class="photo-upload-hint">JPG, PNG, WEBP — max 5 MB recommended</div>
+                </div>
+              </div>
+              <div class="photo-preview-wrap" id="photoPreviewWrap" style="display:none">
+                <img src="" alt="Preview" class="photo-preview" id="photoPreview">
+                <button type="button" onclick="clearPhoto()" style="display:block;margin:6px auto 0;font-size:0.75rem;color:var(--danger);background:none;border:none;cursor:pointer"><i class="fas fa-trash"></i> Remove photo</button>
+              </div>
+              <span class="photo-url-toggle" id="toggleUrlInput">Or paste an image URL instead</span>
+              <div id="urlInputWrap" style="display:none;margin-top:8px">
+                <input type="text" id="teacherPhotoUrl" placeholder="https://example.com/photo.jpg" style="width:100%;padding:0.6rem 0.9rem;border-radius:8px;border:1.5px solid var(--border);font-size:0.85rem;outline:none">
+              </div>
+            </div>
+
+            <div class="admin-grid-2">
+              <div class="admin-field">
+                <label>Full Name *</label>
+                <input type="text" id="tName" placeholder="e.g. Dr. Jane Smith" required>
+              </div>
+              <div class="admin-field">
+                <label>Subject / Specialisation *</label>
+                <input type="text" id="tSubject" placeholder="e.g. Bayesian Statistics">
+              </div>
+            </div>
+            <div class="admin-field">
+              <label>Qualification & Experience *</label>
+              <input type="text" id="tQual" placeholder="e.g. Ph.D. Statistics, University of Cape Town · 10 years experience">
+            </div>
+            <div class="admin-field">
+              <label>Short Biography *</label>
+              <textarea id="tBio" placeholder="Write a 1–2 sentence professional bio for this teacher..."></textarea>
+            </div>
+            <div class="admin-grid-2">
+              <div class="admin-field">
+                <label>Rating (out of 5)</label>
+                <div class="admin-rating-row">
+                  <input type="range" id="tRating" min="1" max="5" step="0.1" value="4.5" oninput="document.getElementById('tRatingVal').textContent=parseFloat(this.value).toFixed(1)">
+                  <span id="tRatingVal" style="font-weight:700;color:var(--gold);width:30px">4.5</span>
+                </div>
+              </div>
+              <div class="admin-field">
+                <label>Number of Reviews</label>
+                <input type="number" id="tReviews" placeholder="e.g. 85" min="0" value="85">
+              </div>
+            </div>
+            <div style="display:flex;gap:0.75rem;margin-top:0.5rem">
+              <button type="button" class="btn-success" onclick="saveTeacher()"><i class="fas fa-save"></i> <span id="teacherSaveLabel">Add Teacher</span></button>
+              <button type="button" class="btn-navy" onclick="cancelTeacherEdit()" id="cancelTeacherBtn" style="display:none"><i class="fas fa-times"></i> Cancel Edit</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STUDENTS PANEL -->
+        <div class="admin-panel" id="panel-students">
+          <div class="admin-panel-title"><i class="fas fa-user-graduate" style="color:var(--gold);margin-right:8px"></i>Student Records</div>
+          <div class="admin-panel-desc">View enrolled students and edit basic information. Student ID is the login username.</div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>Student ID</th><th>Full Name</th><th>Level/Grade</th><th>Attendance</th><th>GPA</th><th>Actions</th></tr></thead>
+              <tbody id="adminStudentsTable"></tbody>
+            </table>
+          </div>
+          <div class="admin-form-card" id="studentEditCard" style="display:none">
+            <div class="admin-form-title"><i class="fas fa-user-edit"></i> Edit Student</div>
+            <input type="hidden" id="editStudentId">
+            <div class="admin-grid-2">
+              <div class="admin-field"><label>Full Name</label><input type="text" id="sName"></div>
+              <div class="admin-field"><label>Level / Grade</label><input type="text" id="sGrade"></div>
+            </div>
+            <div class="admin-grid-3">
+              <div class="admin-field"><label>Days Present</label><input type="number" id="sPresent" min="0"></div>
+              <div class="admin-field"><label>Days Absent</label><input type="number" id="sAbsent" min="0"></div>
+              <div class="admin-field"><label>Total Days</label><input type="number" id="sTotal" min="1"></div>
+            </div>
+            <div style="display:flex;gap:0.75rem">
+              <button type="button" class="btn-success" onclick="saveStudent()"><i class="fas fa-save"></i> Save Changes</button>
+              <button type="button" class="btn-navy" onclick="document.getElementById('studentEditCard').style.display='none'"><i class="fas fa-times"></i> Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- EVENTS PANEL -->
+        <div class="admin-panel" id="panel-events">
+          <div class="admin-panel-title"><i class="fas fa-calendar-alt" style="color:var(--gold);margin-right:8px"></i>Events Management</div>
+          <div class="admin-panel-desc">Add, edit, or remove events shown on the Events section of the website.</div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>Title</th><th>Date</th><th>Type</th><th>Actions</th></tr></thead>
+              <tbody id="adminEventsTable"></tbody>
+            </table>
+          </div>
+          <div class="admin-form-card">
+            <div class="admin-form-title"><i class="fas fa-calendar-plus"></i> <span id="eventFormLabel">Add New Event</span></div>
+            <input type="hidden" id="editEventId" value="">
+            <div class="admin-grid-2">
+              <div class="admin-field"><label>Event Title *</label><input type="text" id="evTitle" placeholder="e.g. Annual Statistics Symposium"></div>
+              <div class="admin-field"><label>Date *</label><input type="date" id="evDate"></div>
+            </div>
+            <div class="admin-field"><label>Description *</label><textarea id="evDesc" placeholder="Brief description of the event..."></textarea></div>
+            <div class="admin-field">
+              <label>Event Type</label>
+              <select id="evType">
+                <option value="academic">Academic</option>
+                <option value="meeting">Meeting</option>
+                <option value="competition">Competition / Workshop</option>
+                <option value="cultural">Cultural</option>
+                <option value="sports">Sports</option>
+                <option value="holiday">Holiday / Break</option>
+                <option value="celebration">Celebration</option>
+              </select>
+            </div>
+            <div style="display:flex;gap:0.75rem">
+              <button type="button" class="btn-success" onclick="saveEvent()"><i class="fas fa-save"></i> <span id="eventSaveLabel">Add Event</span></button>
+              <button type="button" class="btn-navy" id="cancelEventBtn" onclick="cancelEventEdit()" style="display:none"><i class="fas fa-times"></i> Cancel Edit</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SETTINGS PANEL -->
+        <div class="admin-panel" id="panel-settings">
+          <div class="admin-panel-title"><i class="fas fa-sliders-h" style="color:var(--gold);margin-right:8px"></i>Admin Settings</div>
+          <div class="admin-panel-desc">Update your admin credentials. Use a strong password to protect the admin panel.</div>
+          <div class="admin-form-card" style="max-width:480px">
+            <div class="admin-form-title"><i class="fas fa-key"></i> Change Admin Password</div>
+            <div class="admin-field"><label>Current Password</label><input type="password" id="oldPass" placeholder="Enter current password"></div>
+            <div class="admin-field"><label>New Password</label><input type="password" id="newPass" placeholder="Enter new password"></div>
+            <div class="admin-field"><label>Confirm New Password</label><input type="password" id="confirmPass" placeholder="Repeat new password"></div>
+            <button type="button" class="btn-success" onclick="changePassword()"><i class="fas fa-save"></i> Update Password</button>
+          </div>
+          <div class="divider"></div>
+          <div class="admin-form-card" style="max-width:480px">
+            <div class="admin-form-title"><i class="fas fa-trash-alt" style="color:var(--danger)"></i> Reset All Data</div>
+            <p style="font-size:0.85rem;color:var(--text-mid);margin-bottom:1rem">This will delete all custom teachers, events, and settings and restore the original defaults. This cannot be undone.</p>
+            <button type="button" onclick="resetAllData()" style="background:var(--danger);color:var(--white);border:none;padding:0.6rem 1.4rem;border-radius:8px;cursor:pointer;font-weight:700;font-size:0.85rem"><i class="fas fa-exclamation-triangle"></i> Reset to Defaults</button>
+          </div>
+        </div>
+
+      </div><!-- end admin-content -->
+    </div><!-- end admin-layout -->
+  </div><!-- end admin-modal -->
+</div><!-- end adminPanelModal -->
+
+<!-- Toast -->
+<div class="admin-toast" id="adminToast"><i class="fas fa-check-circle"></i> <span id="adminToastMsg"></span></div>
+
+<!-- ─── SCRIPTS ─── -->
+<script>
+
+// ─── STUDENT DATABASE ───
+const studentsData = {
+  'S001': {
+    id: 'S001', name: 'Emmanuel Kollie', password: 'S001', grade: 'Level 300 — BSc Statistics',
+    grades: [
+      { subject: 'Probability Theory', marks: 92, grade: 'A+', status: 'Pass' },
+      { subject: 'Statistical Inference', marks: 88, grade: 'A', status: 'Pass' },
+      { subject: 'Regression Analysis', marks: 85, grade: 'A', status: 'Pass' },
+      { subject: 'Survey Sampling', marks: 90, grade: 'A+', status: 'Pass' },
+      { subject: 'Statistical Computing (R)', marks: 94, grade: 'A+', status: 'Pass' },
+      { subject: 'Research Methods', marks: 87, grade: 'A', status: 'Pass' }
+    ],
+    attendance: { present: 168, absent: 12, total: 180 },
+    schedule: [
+      { time: '8:00–9:00', monday: 'Probability Theory', tuesday: 'Regression Analysis', wednesday: 'Probability Theory', thursday: 'Regression Analysis', friday: 'Probability Theory' },
+      { time: '9:00–10:00', monday: 'Statistical Inference', tuesday: 'Survey Sampling', wednesday: 'Statistical Inference', thursday: 'Survey Sampling', friday: 'Statistical Inference' },
+      { time: '10:00–11:00', monday: 'Statistical Computing', tuesday: 'Bayesian Statistics', wednesday: 'Statistical Computing', thursday: 'Bayesian Statistics', friday: 'Statistical Computing' },
+      { time: '11:00–12:00', monday: 'Research Methods', tuesday: 'Probability Theory', wednesday: 'Research Methods', thursday: 'Probability Theory', friday: 'Research Methods' },
+      { time: '12:00–1:00', monday: 'Lunch Break', tuesday: 'Lunch Break', wednesday: 'Lunch Break', thursday: 'Lunch Break', friday: 'Lunch Break' },
+      { time: '1:00–2:00', monday: 'Regression Analysis', tuesday: 'Statistical Inference', wednesday: 'Regression Analysis', thursday: 'Statistical Inference', friday: 'Regression Analysis' },
+      { time: '2:00–3:00', monday: 'Survey Sampling', tuesday: 'Statistical Computing', wednesday: 'Survey Sampling', thursday: 'Statistical Computing', friday: 'Lab Session' }
+    ]
+  },
+  'S002': {
+    id: 'S002', name: 'Florence Nyenkan', password: 'S002', grade: 'Level 200 — BSc Applied Statistics',
+    grades: [
+      { subject: 'Descriptive Statistics', marks: 78, grade: 'B+', status: 'Pass' },
+      { subject: 'Probability & Distributions', marks: 82, grade: 'A-', status: 'Pass' },
+      { subject: 'Data Management (SPSS)', marks: 75, grade: 'B', status: 'Pass' },
+      { subject: 'Calculus for Statistics', marks: 80, grade: 'A-', status: 'Pass' },
+      { subject: 'Linear Algebra', marks: 85, grade: 'A', status: 'Pass' },
+      { subject: 'R Programming', marks: 88, grade: 'A', status: 'Pass' }
+    ],
+    attendance: { present: 155, absent: 25, total: 180 },
+    schedule: [
+      { time: '8:00–9:00', monday: 'Descriptive Statistics', tuesday: 'Linear Algebra', wednesday: 'Descriptive Statistics', thursday: 'Linear Algebra', friday: 'Descriptive Statistics' },
+      { time: '9:00–10:00', monday: 'Data Management', tuesday: 'R Programming', wednesday: 'Data Management', thursday: 'R Programming', friday: 'Data Management' },
+      { time: '10:00–11:00', monday: 'Probability & Dist.', tuesday: 'Calculus', wednesday: 'Probability & Dist.', thursday: 'Calculus', friday: 'Probability & Dist.' },
+      { time: '11:00–12:00', monday: 'R Programming', tuesday: 'Descriptive Statistics', wednesday: 'R Programming', thursday: 'Descriptive Statistics', friday: 'R Programming' },
+      { time: '12:00–1:00', monday: 'Lunch Break', tuesday: 'Lunch Break', wednesday: 'Lunch Break', thursday: 'Lunch Break', friday: 'Lunch Break' },
+      { time: '1:00–2:00', monday: 'Calculus', tuesday: 'Data Management', wednesday: 'Calculus', thursday: 'Data Management', friday: 'Calculus' },
+      { time: '2:00–3:00', monday: 'Linear Algebra', tuesday: 'Probability & Dist.', wednesday: 'Linear Algebra', thursday: 'Probability & Dist.', friday: 'Tutorial' }
+    ]
+  },
+  'S003': {
+    id: 'S003', name: 'Victor Sumo', password: 'S003', grade: 'MSc Statistics — Year 1',
+    grades: [
+      { subject: 'Advanced Statistical Theory', marks: 95, grade: 'A+', status: 'Pass' },
+      { subject: 'Bayesian Inference', marks: 94, grade: 'A+', status: 'Pass' },
+      { subject: 'Econometrics', marks: 92, grade: 'A+', status: 'Pass' },
+      { subject: 'Time Series Analysis', marks: 96, grade: 'A+', status: 'Pass' },
+      { subject: 'Multivariate Analysis', marks: 93, grade: 'A+', status: 'Pass' },
+      { subject: 'Statistical Computing (SAS/R)', marks: 98, grade: 'A+', status: 'Pass' }
+    ],
+    attendance: { present: 175, absent: 5, total: 180 },
+    schedule: [
+      { time: '8:00–9:00', monday: 'Statistical Theory', tuesday: 'Econometrics', wednesday: 'Statistical Theory', thursday: 'Econometrics', friday: 'Statistical Theory' },
+      { time: '9:00–10:00', monday: 'Statistical Computing', tuesday: 'Bayesian Inference', wednesday: 'Statistical Computing', thursday: 'Bayesian Inference', friday: 'Statistical Computing' },
+      { time: '10:00–11:00', monday: 'Time Series Analysis', tuesday: 'Multivariate Analysis', wednesday: 'Time Series Analysis', thursday: 'Multivariate Analysis', friday: 'Time Series Analysis' },
+      { time: '11:00–12:00', monday: 'Bayesian Inference', tuesday: 'Statistical Theory', wednesday: 'Bayesian Inference', thursday: 'Statistical Theory', friday: 'Research Seminar' },
+      { time: '12:00–1:00', monday: 'Lunch Break', tuesday: 'Lunch Break', wednesday: 'Lunch Break', thursday: 'Lunch Break', friday: 'Lunch Break' },
+      { time: '1:00–2:00', monday: 'Econometrics', tuesday: 'Statistical Computing', wednesday: 'Econometrics', thursday: 'Statistical Computing', friday: 'Econometrics' },
+      { time: '2:00–3:00', monday: 'Multivariate Analysis', tuesday: 'Time Series Analysis', wednesday: 'Multivariate Analysis', thursday: 'Time Series Analysis', friday: 'Thesis Supervision' }
+    ]
+  }
+};
+
+// ─── TEACHERS DATABASE (All Statistics) ───
+const teachersData = [
+  {
+    id: 'T001', name: 'Dr. Sarah A. Johnson',
+    subject: 'Probability Theory & Mathematical Statistics',
+    qualification: 'Ph.D. Mathematical Statistics, University of Cape Town · 15 years experience',
+    bio: 'Expert in probability theory, stochastic processes, and measure-theoretic foundations of statistics. Former consultant for LISGIS national surveys.',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400&q=80',
+    rating: 4.8, reviews: 124
+  },
+  {
+    id: 'T002', name: 'Prof. Michael K. Chen',
+    subject: 'Statistical Computing & Data Science',
+    qualification: 'Ph.D. Statistics & Computing, University of Edinburgh · 12 years experience',
+    bio: 'Award-winning instructor specializing in R, Python, SAS, and STATA. Leads the Institute\'s Data Science Lab and industry collaboration projects.',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400&q=80',
+    rating: 4.9, reviews: 98
+  },
+  {
+    id: 'T003', name: 'Dr. Emily B. Rodriguez',
+    subject: 'Econometrics & Applied Regression',
+    qualification: 'Ph.D. Econometrics, Erasmus University Rotterdam · 8 years experience',
+    bio: 'Specialist in panel data models, VAR methodology, and applied regression for development economics. Published researcher on West African economic data.',
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400&q=80',
+    rating: 4.7, reviews: 112
+  },
+  {
+    id: 'T004', name: 'Prof. James T. Wilson',
+    subject: 'Bayesian Statistics & Decision Theory',
+    qualification: 'Ph.D. Bayesian Statistics, University of Oxford · 20 years experience',
+    bio: 'Pioneering researcher in Bayesian inference, MCMC methods, Gibbs sampling, and Hamiltonian Monte Carlo. Author of two statistics textbooks used across Africa.',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400&q=80',
+    rating: 4.9, reviews: 156
+  },
+  {
+    id: 'T005', name: 'Prof. Lisa M. Thompson',
+    subject: 'Survey Sampling & Research Design',
+    qualification: 'MSc Survey Statistics, University of Botswana · Ph.D. cand. · 14 years experience',
+    bio: 'Expert in Horvitz-Thompson estimation, stratified sampling, and complex survey design. Collaborated with UNICEF and WHO on large-scale African health surveys.',
+    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400&q=80',
+    rating: 4.8, reviews: 89
+  },
+  {
+    id: 'T006', name: 'Dr. David O. Park',
+    subject: 'Time Series Analysis & Forecasting',
+    qualification: 'Ph.D. Time Series Statistics, Johns Hopkins University · 10 years experience',
+    bio: 'Specializes in ARIMA, VAR, GARCH, and machine learning approaches to financial and macroeconomic forecasting. Consultant to the Central Bank of Liberia.',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400&q=80',
+    rating: 4.9, reviews: 145
+  }
+];
+
+// ─── EVENTS DATABASE ───
+const eventsData = [
+  { id: 1, title: 'National Statistics Day Symposium', date: '2025-05-20', description: 'Annual symposium featuring keynote addresses, research presentations, and panel discussions on statistical development in Liberia.', type: 'academic' },
+  { id: 2, title: 'Data Science Bootcamp', date: '2025-05-25', description: 'Intensive 3-day workshop on machine learning, Python, and data visualization for LSI students and professionals.', type: 'competition' },
+  { id: 3, title: 'Mid-Semester Break', date: '2025-06-02', description: 'Institute closed for mid-semester recess. All classes resume on June 9th.', type: 'holiday' },
+  { id: 4, title: 'MSc Thesis Defense Day', date: '2025-05-15', description: 'Public presentation of MSc Statistics and Econometrics thesis research by graduating students.', type: 'academic' },
+  { id: 5, title: 'LISGIS Collaboration Workshop', date: '2025-05-18', description: 'Joint workshop with Liberia Institute of Statistics and Geo-Information Services on national census methodology.', type: 'cultural' },
+  { id: 6, title: 'Scholarship & Career Fair', date: '2025-05-28', description: 'Representatives from World Bank, AfDB, IMF, and ECOWAS present scholarship and career opportunities in statistics.', type: 'meeting' },
+  { id: 7, title: 'R & Python Programming Contest', date: '2025-06-10', description: 'Annual statistical computing challenge where teams solve real-world data problems in R and Python.', type: 'competition' },
+  { id: 8, title: 'Graduation Ceremony 2025', date: '2025-07-05', description: 'The 16th Graduation Ceremony celebrating the achievements of BSc, MSc, and PhD graduates of LSI.', type: 'celebration' }
+];
+
+let teacherEvaluations = {};
+try { teacherEvaluations = JSON.parse(localStorage.getItem('lsi_evaluations')) || {}; } catch(e) {}
+
+// ─── NAVBAR ───
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('active');
+});
+document.querySelectorAll('.nav-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+  });
+});
+
+// Smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('.navbar');
+  if (window.scrollY > 80) {
+    navbar.style.background = 'rgba(6,14,29,0.98)';
+    navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.3)';
+  } else {
+    navbar.style.background = 'rgba(10,22,40,0.96)';
+    navbar.style.boxShadow = 'none';
+  }
+});
+
+// ─── RENDER TEACHERS ───
+function renderTeachers() {
+  const grid = document.getElementById('teachersGrid');
+  if (!grid) return;
+  grid.innerHTML = teachersData.map(t => `
+    <div class="teacher-card">
+      <div class="teacher-card-top">
+        <img src="${t.image}" alt="${t.name}" class="teacher-avatar" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(t.name)}&background=1e3a5f&color=fff&size=200'">
+        <div class="teacher-head-info">
+          <div class="teacher-name">${t.name}</div>
+          <span class="teacher-subject-badge">${t.subject.split('&')[0].trim()}</span>
+        </div>
+      </div>
+      <div class="teacher-card-body">
+        <p class="teacher-bio">${t.bio}</p>
+        <p class="teacher-qual"><i class="fas fa-graduation-cap"></i> ${t.qualification}</p>
+        <div class="teacher-rating">
+          <div class="stars">${'★'.repeat(Math.floor(t.rating))}${'☆'.repeat(5 - Math.ceil(t.rating))}</div>
+          <span class="rating-value">${t.rating} (${t.reviews} reviews)</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ─── RENDER EVENTS ───
+function renderEvents() {
+  const list = document.getElementById('eventsList');
+  if (!list) return;
+  const typeColors = { academic:'#1e3a5f', meeting:'#c9922a', holiday:'#c0392b', sports:'#2d7d46', cultural:'#6b21a8', competition:'#0f766e', celebration:'#b45309' };
+  list.innerHTML = eventsData.map(ev => `
+    <div class="event-item">
+      <div class="event-date">
+        <span class="event-type-dot" style="background:${typeColors[ev.type]||'#c9922a'}"></span>
+        <i class="far fa-calendar-alt"></i>
+        ${new Date(ev.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+      </div>
+      <div class="event-title">${ev.title}</div>
+      <div class="event-description">${ev.description}</div>
+    </div>
+  `).join('');
+}
+
+// ─── CALENDAR ───
+let calDate = new Date();
+const eventDates = new Set(eventsData.map(e => e.date.split('-').slice(1).join('-') + '-' + e.date.split('-')[0]));
+
+function renderCalendar() {
+  const title = document.getElementById('calMonthTitle');
+  const grid = document.getElementById('calGrid');
+  if (!title || !grid) return;
+  const y = calDate.getFullYear(), m = calDate.getMonth();
+  title.textContent = calDate.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+  const days = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+  const first = new Date(y, m, 1).getDay();
+  const last = new Date(y, m+1, 0).getDate();
+  const today = new Date();
+  let html = days.map(d => `<div class="cal-day-label">${d}</div>`).join('');
+  for (let i = 0; i < first; i++) html += `<div class="cal-day empty"></div>`;
+  for (let d = 1; d <= last; d++) {
+    const dateStr = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isToday = today.getFullYear()===y && today.getMonth()===m && today.getDate()===d;
+    const hasEvent = eventsData.some(e => e.date === dateStr);
+    html += `<div class="cal-day${isToday?' today':''}${hasEvent?' has-event':''}">${d}</div>`;
+  }
+  grid.innerHTML = html;
+}
+document.getElementById('calPrev')?.addEventListener('click', () => { calDate.setMonth(calDate.getMonth()-1); renderCalendar(); });
+document.getElementById('calNext')?.addEventListener('click', () => { calDate.setMonth(calDate.getMonth()+1); renderCalendar(); });
+
+// ─── LOGIN MODAL ───
+const loginModal = document.getElementById('loginModal');
+const dashboardModal = document.getElementById('dashboardModal');
+
+function openModal(modal) { modal.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal(modal) { modal.classList.remove('open'); document.body.style.overflow=''; }
+
+document.getElementById('loginBtn')?.addEventListener('click', e => { e.preventDefault(); openModal(loginModal); });
+document.getElementById('heroLoginBtn')?.addEventListener('click', e => { e.preventDefault(); openModal(loginModal); });
+
+document.querySelectorAll('.close, .close-dashboard').forEach(btn => {
+  btn.addEventListener('click', () => { closeModal(loginModal); closeModal(dashboardModal); });
+});
+[loginModal, dashboardModal].forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) closeModal(m); });
+});
+
+// ─── STUDENT LOGIN ───
+document.getElementById('studentLoginForm')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const id = document.getElementById('studentId').value.toUpperCase().trim();
+  const pw = document.getElementById('studentPassword').value.trim();
+  if (studentsData[id] && studentsData[id].password === pw) {
+    closeModal(loginModal);
+    loadStudentDashboard(id);
+    openModal(dashboardModal);
+    document.getElementById('studentId').value = '';
+    document.getElementById('studentPassword').value = '';
+  } else {
+    const hint = document.querySelector('.login-hint');
+    hint.style.background = '#fee2e2';
+    hint.textContent = '✗ Invalid ID or Password. Try S001/S001, S002/S002, or S003/S003';
+    setTimeout(() => { hint.style.background = ''; hint.textContent = 'Demo: S001/S001 · S002/S002 · S003/S003'; }, 3000);
+  }
+});
+
+// ─── LOAD DASHBOARD ───
+function loadStudentDashboard(studentId) {
+  const student = studentsData[studentId];
+  if (!student) return;
+  document.getElementById('studentName').innerHTML = `<i class="fas fa-user-circle"></i> ${student.name} | ${student.grade}`;
+  const totalMarks = student.grades.reduce((s, g) => s + g.marks, 0);
+  const pct = (totalMarks / (student.grades.length * 100)) * 100;
+  const gpa = (pct / 100) * 4;
+  document.getElementById('currentGPA').textContent = gpa.toFixed(2);
+  document.getElementById('overallPercent').textContent = pct.toFixed(1) + '%';
+  const attRate = (student.attendance.present / student.attendance.total * 100).toFixed(1);
+  document.getElementById('presentDays').textContent = student.attendance.present;
+  document.getElementById('attendanceRate').textContent = attRate + '%';
+  document.getElementById('presentDays2').textContent = student.attendance.present;
+  document.getElementById('absentDays').textContent = student.attendance.absent;
+  document.getElementById('attendanceRate2').textContent = attRate + '%';
+  setTimeout(() => { const bar = document.getElementById('attProgressBar'); if (bar) bar.style.width = attRate + '%'; }, 300);
+  document.getElementById('gradesTableBody').innerHTML = student.grades.map(g => `
+    <tr>
+      <td>${g.subject}</td>
+      <td><strong>${g.marks}</strong>/100</td>
+      <td>${g.grade}</td>
+      <td class="status-${g.status.toLowerCase()}">${g.status}</td>
+    </tr>
+  `).join('');
+  document.getElementById('scheduleTableBody').innerHTML = student.schedule.map(s => `
+    <tr>
+      <td>${s.time}</td><td>${s.monday}</td><td>${s.tuesday}</td>
+      <td>${s.wednesday}</td><td>${s.thursday}</td><td>${s.friday}</td>
+    </tr>
+  `).join('');
+  renderEvaluationForm(studentId);
+  // Reset to grades tab
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.querySelector('[data-tab="grades"]').classList.add('active');
+  document.getElementById('gradesTab').classList.add('active');
+}
+
+// ─── EVALUATION FORM ───
+function renderEvaluationForm(studentId) {
+  const div = document.getElementById('evaluationForm');
+  if (!div) return;
+  div.innerHTML = teachersData.map(t => {
+    const saved = teacherEvaluations[`${studentId}_${t.id}`];
+    return `
+      <div class="evaluation-item" data-teacher="${t.id}">
+        <h4><i class="fas fa-chalkboard-teacher" style="color:var(--gold);margin-right:6px"></i>${t.name} — ${t.subject.split('&')[0].trim()}</h4>
+        <div class="rating-input">
+          ${[1,2,3,4,5].map(r => `
+            <label>
+              <input type="radio" name="rating_${t.id}" value="${r}" ${saved && saved.rating==r?'checked':''}>
+              ${'★'.repeat(r)} ${r}
+            </label>
+          `).join('')}
+        </div>
+        <textarea class="evaluation-comment" placeholder="Share your experience with this course and lecturer...">${saved ? saved.comment : ''}</textarea>
+        <button class="submit-evaluation" onclick="saveEvaluation('${studentId}','${t.id}')">
+          <i class="fas fa-check"></i> Submit Evaluation
+        </button>
+      </div>
+    `;
+  }).join('');
+}
+
+window.saveEvaluation = function(studentId, teacherId) {
+  const rating = document.querySelector(`input[name="rating_${teacherId}"]:checked`);
+  const comment = document.querySelector(`.evaluation-item[data-teacher="${teacherId}"] .evaluation-comment`).value;
+  if (!rating) { alert('Please select a star rating before submitting.'); return; }
+  teacherEvaluations[`${studentId}_${teacherId}`] = { rating: parseInt(rating.value), comment, date: new Date().toISOString() };
+  try { localStorage.setItem('lsi_evaluations', JSON.stringify(teacherEvaluations)); } catch(e) {}
+  const btn = document.querySelector(`.evaluation-item[data-teacher="${teacherId}"] .submit-evaluation`);
+  if (btn) { btn.textContent = '✓ Evaluation Submitted!'; btn.style.background = 'var(--success)'; }
+};
+
+// ─── TAB SWITCHING ───
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(`${btn.getAttribute('data-tab')}Tab`).classList.add('active');
+  });
+});
+
+// ─── DOWNLOAD REPORT ───
+document.getElementById('downloadReport')?.addEventListener('click', () => {
+  const content = document.getElementById('gradesTab').innerHTML;
+  const name = document.getElementById('studentName').textContent;
+  const win = window.open('', '_blank');
+  win.document.write(`
+    <html><head><title>LSI Report Card</title>
+    <style>body{font-family:Georgia,serif;padding:2rem;color:#1a1a2e}
+    h1{color:#0a1628;margin-bottom:0.5rem}
+    table{border-collapse:collapse;width:100%}
+    th{background:#0a1628;color:#fff;padding:0.5rem 1rem;text-align:left}
+    td{padding:0.5rem 1rem;border-bottom:1px solid #e2d9c8}
+    </style></head><body>
+    <h1>Liberia Statistics Institute</h1>
+    <h2 style="font-size:1rem;font-weight:normal;color:#4a5568">Academic Report Card — ${name}</h2>
+    <hr style="margin:1rem 0;border-color:#e2d9c8">
+    ${content}
+    <p style="margin-top:2rem;font-size:0.8rem;color:#718096">Generated: ${new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}</p>
+    </body></html>
+  `);
+  win.document.close();
+  win.print();
+});
+
+// ─── CONTACT FORM ───
+document.getElementById('contactForm')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const msg = document.getElementById('formMessage');
+  msg.textContent = '✓ Thank you for your message. Our team will respond within 2 business days.';
+  msg.style.color = '#2d7d46';
+  e.target.reset();
+  setTimeout(() => { msg.textContent = ''; }, 6000);
+});
+
+// ─── NEWSLETTER ───
+document.querySelector('.newsletter-form')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const input = e.target.querySelector('input');
+  if (input.value) { alert('Thank you for subscribing to the LSI Newsletter!'); input.value = ''; }
+});
+
+// ─── INTERSECTION OBSERVER ANIMATIONS ───
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.feature-card, .teacher-card, .event-item').forEach(el => {
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+
+// ─── INIT ───
+document.addEventListener('DOMContentLoaded', () => {
+  loadDataFromStorage();
+  renderTeachers();
+  renderEvents();
+  renderCalendar();
+  renderAdminTeachersTable();
+  renderAdminStudentsTable();
+  renderAdminEventsTable();
+  updateAdminStats();
+  setTimeout(() => {
+    document.querySelectorAll('.teacher-card, .event-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  }, 100);
+});
+
+/* ═══════════════════════════════════════════════
+   STUDENT PROFILE SYSTEM
+═══════════════════════════════════════════════ */
+
+const PROFILE_STORAGE_KEY = 'lsi_student_profiles';
+let currentStudentId = null;
+let pendingProfilePhoto = ''; // base64 or URL
+
+// Load all saved student profiles from storage
+function loadStudentProfiles() {
+  try { return JSON.parse(localStorage.getItem(PROFILE_STORAGE_KEY)) || {}; } catch(e) { return {}; }
+}
+function saveStudentProfiles(profiles) {
+  localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(profiles));
+}
+function getStudentProfile(id) {
+  const profiles = loadStudentProfiles();
+  return profiles[id] || {};
+}
+function patchStudentProfile(id, patch) {
+  const profiles = loadStudentProfiles();
+  profiles[id] = Object.assign(profiles[id] || {}, patch);
+  saveStudentProfiles(profiles);
+}
+
+// ─── Load profile data into the tab when student logs in ───
+function loadProfileTab(studentId) {
+  currentStudentId = studentId;
+  const student = studentsData[studentId];
+  const profile  = getStudentProfile(studentId);
+
+  // GPA / Attendance for ID card
+  const totalMarks = student.grades.reduce((s, g) => s + g.marks, 0);
+  const pct  = (totalMarks / (student.grades.length * 100)) * 100;
+  const gpa  = ((pct / 100) * 4).toFixed(2);
+  const attRate = ((student.attendance.present / student.attendance.total) * 100).toFixed(0) + '%';
+
+  // Populate ID card
+  const displayName = profile.name || student.name;
+  setText('idCardName',  displayName);
+  setText('idCardGrade', student.grade);
+  setText('idCardBadge', studentId);
+  setText('idCardID',    studentId);
+  setText('idCardEmail', profile.email || '—');
+  setText('idCardPhone', profile.phone || '—');
+  setText('idCardGPA',   gpa);
+  setText('idCardAtt',   attRate);
+
+  // Avatar on ID card
+  refreshAllAvatars(studentId, displayName, profile.photo || '');
+
+  // Populate Personal Info
+  setVal('profName',        displayName);
+  setVal('profId',          studentId);
+  setVal('profDob',         profile.dob || '');
+  setVal('profGender',      profile.gender || '');
+  setVal('profBio',         profile.bio || '');
+
+  // Contact
+  setVal('profEmail',       profile.email || '');
+  setVal('profPhone',       profile.phone || '');
+  setVal('profCity',        profile.city || '');
+  setVal('profNationality', profile.nationality || '');
+
+  // Photo preview if already saved
+  pendingProfilePhoto = '';
+  const existingPhoto = profile.photo || '';
+  if (existingPhoto) {
+    showEl('profilePhotoPreviewWrap');
+    setAttr('profilePhotoPreview', 'src', existingPhoto);
+    hideEl('profileUploadPlaceholder');
+  } else {
+    hideEl('profilePhotoPreviewWrap');
+    showEl('profileUploadPlaceholder');
+  }
+
+  // Clear password fields
+  ['profOldPass','profNewPass','profConfirmPass'].forEach(id => setVal(id, ''));
+
+  // Hide messages
+  ['personalSuccessMsg','contactSuccessMsg','photoSuccessMsg','passSuccessMsg','passErrorMsg']
+    .forEach(id => { const el = document.getElementById(id); if(el) el.style.display='none'; });
+}
+
+// ─── Avatar helpers ───
+function getInitialsFromName(name) {
+  return (name || '?').split(' ').filter(Boolean).map(w => w[0]).slice(0,2).join('').toUpperCase();
+}
+function refreshAllAvatars(studentId, name, photoSrc) {
+  const initials = getInitialsFromName(name);
+  // Header avatar
+  setText('dashAvatarInitials', initials);
+  const dashImg = document.getElementById('dashAvatarImg');
+  if (dashImg) {
+    if (photoSrc) { dashImg.src = photoSrc; dashImg.style.display = 'block'; document.getElementById('dashAvatarInitials').style.display = 'none'; }
+    else          { dashImg.style.display = 'none'; document.getElementById('dashAvatarInitials').style.display = 'block'; }
+  }
+  // ID card avatar
+  setText('profileAvatarInitials', initials);
+  const profImg = document.getElementById('profileAvatarImg');
+  if (profImg) {
+    if (photoSrc) { profImg.src = photoSrc; profImg.style.display = 'block'; document.getElementById('profileAvatarInitials').style.display = 'none'; }
+    else          { profImg.style.display = 'none'; document.getElementById('profileAvatarInitials').style.display = 'block'; }
+  }
+}
+
+// ─── DOM helpers ───
+function setText(id, val) { const el=document.getElementById(id); if(el) el.textContent=val; }
+function setVal(id, val)  { const el=document.getElementById(id); if(el) el.value=val; }
+function setAttr(id, attr, val) { const el=document.getElementById(id); if(el) el[attr]=val; }
+function showEl(id) { const el=document.getElementById(id); if(el) el.style.display=''; }
+function hideEl(id) { const el=document.getElementById(id); if(el) el.style.display='none'; }
+function flashMsg(id, duration=3000) {
+  const el=document.getElementById(id); if(!el) return;
+  el.style.display='block';
+  setTimeout(()=>{ el.style.display='none'; }, duration);
+}
+
+// ─── Accordion toggle ───
+function toggleProfileSection(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.toggle('open');
+}
+window.toggleProfileSection = toggleProfileSection;
+
+// ─── Profile photo file input (in photo section) ───
+document.getElementById('profilePhotoInput2')?.addEventListener('change', function() {
+  const file = this.files[0]; if (!file) return;
+  if (file.size > 8*1024*1024) { showToast('Image is too large. Max 8 MB.', 'error'); return; }
+  const reader = new FileReader();
+  reader.onload = ev => {
+    pendingProfilePhoto = ev.target.result;
+    setAttr('profilePhotoPreview', 'src', pendingProfilePhoto);
+    showEl('profilePhotoPreviewWrap');
+    hideEl('profileUploadPlaceholder');
+  };
+  reader.readAsDataURL(file);
+});
+
+// ─── Profile photo via camera icon (on avatar) ───
+document.getElementById('profilePhotoInput')?.addEventListener('change', function() {
+  const file = this.files[0]; if (!file) return;
+  if (file.size > 8*1024*1024) { showToast('Image is too large. Max 8 MB.', 'error'); return; }
+  const reader = new FileReader();
+  reader.onload = ev => {
+    pendingProfilePhoto = ev.target.result;
+    // immediately save
+    if (!currentStudentId) return;
+    patchStudentProfile(currentStudentId, { photo: pendingProfilePhoto });
+    refreshAllAvatars(currentStudentId, getStudentProfile(currentStudentId).name || studentsData[currentStudentId].name, pendingProfilePhoto);
+    // Sync to photo section preview
+    setAttr('profilePhotoPreview', 'src', pendingProfilePhoto);
+    showEl('profilePhotoPreviewWrap');
+    hideEl('profileUploadPlaceholder');
+    showToast('Profile photo updated!');
+  };
+  reader.readAsDataURL(file);
+});
+
+function clearProfilePhoto() {
+  pendingProfilePhoto = '';
+  document.getElementById('profilePhotoInput2').value = '';
+  hideEl('profilePhotoPreviewWrap');
+  showEl('profileUploadPlaceholder');
+}
+window.clearProfilePhoto = clearProfilePhoto;
+
+// ─── SAVE PERSONAL INFO ───
+function savePersonalInfo() {
+  if (!currentStudentId) return;
+  const name = document.getElementById('profName').value.trim();
+  if (!name) { showToast('Name cannot be empty.', 'error'); return; }
+  const patch = {
+    name:   name,
+    dob:    document.getElementById('profDob').value,
+    gender: document.getElementById('profGender').value,
+    bio:    document.getElementById('profBio').value.trim()
+  };
+  patchStudentProfile(currentStudentId, patch);
+  // Update UI
+  studentsData[currentStudentId].name = name; // reflect in dashboard header
+  document.getElementById('studentName').innerHTML = `<i class="fas fa-user-circle"></i> ${name} | ${studentsData[currentStudentId].grade}`;
+  setText('idCardName', name);
+  refreshAllAvatars(currentStudentId, name, getStudentProfile(currentStudentId).photo || '');
+  flashMsg('personalSuccessMsg');
+  showToast('Personal info saved.');
+}
+window.savePersonalInfo = savePersonalInfo;
+
+// ─── SAVE CONTACT INFO ───
+function saveContactInfo() {
+  if (!currentStudentId) return;
+  const patch = {
+    email:       document.getElementById('profEmail').value.trim(),
+    phone:       document.getElementById('profPhone').value.trim(),
+    city:        document.getElementById('profCity').value.trim(),
+    nationality: document.getElementById('profNationality').value.trim()
+  };
+  patchStudentProfile(currentStudentId, patch);
+  setText('idCardEmail', patch.email || '—');
+  setText('idCardPhone', patch.phone || '—');
+  flashMsg('contactSuccessMsg');
+  showToast('Contact details saved.');
+}
+window.saveContactInfo = saveContactInfo;
+
+// ─── SAVE PROFILE PHOTO ───
+function saveProfilePhoto() {
+  if (!currentStudentId) return;
+  const photo = pendingProfilePhoto;
+  if (!photo) { showToast('Please select a photo first.', 'error'); return; }
+  patchStudentProfile(currentStudentId, { photo });
+  refreshAllAvatars(currentStudentId, getStudentProfile(currentStudentId).name || studentsData[currentStudentId].name, photo);
+  flashMsg('photoSuccessMsg');
+  showToast('Profile photo saved!');
+}
+window.saveProfilePhoto = saveProfilePhoto;
+
+// ─── CHANGE STUDENT PASSWORD ───
+function changeStudentPassword() {
+  if (!currentStudentId) return;
+  const oldPass  = document.getElementById('profOldPass').value;
+  const newPass  = document.getElementById('profNewPass').value;
+  const confPass = document.getElementById('profConfirmPass').value;
+  const errEl    = document.getElementById('passErrorMsg');
+  errEl.style.display = 'none';
+
+  if (oldPass !== studentsData[currentStudentId].password) {
+    errEl.textContent = '✗ Current password is incorrect.';
+    errEl.style.display = 'block'; return;
+  }
+  if (newPass.length < 4) {
+    errEl.textContent = '✗ New password must be at least 4 characters.';
+    errEl.style.display = 'block'; return;
+  }
+  if (newPass !== confPass) {
+    errEl.textContent = '✗ New passwords do not match.';
+    errEl.style.display = 'block'; return;
+  }
+  studentsData[currentStudentId].password = newPass;
+  // Persist to profile storage too
+  patchStudentProfile(currentStudentId, { password: newPass });
+  ['profOldPass','profNewPass','profConfirmPass'].forEach(id => setVal(id, ''));
+  flashMsg('passSuccessMsg');
+  showToast('Password updated successfully.');
+}
+window.changeStudentPassword = changeStudentPassword;
+
+// ─── Hook into loadStudentDashboard to also set profile ───
+// Patch the existing function to load profile data and set avatar
+const _origLoad = loadStudentDashboard;
+loadStudentDashboard = function(studentId) {
+  currentStudentId = studentId;
+  _origLoad(studentId);
+  loadProfileTab(studentId);
+  // Show avatar in header
+  const profile = getStudentProfile(studentId);
+  const name = profile.name || studentsData[studentId].name;
+  refreshAllAvatars(studentId, name, profile.photo || '');
+  // Update dashboard header name if profile has custom name
+  if (profile.name) {
+    document.getElementById('studentName').innerHTML = `<i class="fas fa-user-circle"></i> ${profile.name} | ${studentsData[studentId].grade}`;
+  }
+};
+
+
+
+// Storage keys
+const STORAGE_KEYS = {
+  teachers: 'lsi_teachers',
+  events: 'lsi_events',
+  adminPass: 'lsi_admin_pass',
+  evaluations: 'lsi_evaluations'
+};
+
+// Default admin password
+let adminPassword = localStorage.getItem(STORAGE_KEYS.adminPass) || 'LSI@2025';
+
+// Photo being composed for new/edit teacher
+let pendingPhotoData = ''; // base64 or URL
+
+// Load persisted data into live arrays
+function loadDataFromStorage() {
+  const savedTeachers = localStorage.getItem(STORAGE_KEYS.teachers);
+  if (savedTeachers) {
+    const parsed = JSON.parse(savedTeachers);
+    teachersData.length = 0;
+    parsed.forEach(t => teachersData.push(t));
+  }
+  const savedEvents = localStorage.getItem(STORAGE_KEYS.events);
+  if (savedEvents) {
+    const parsed = JSON.parse(savedEvents);
+    eventsData.length = 0;
+    parsed.forEach(e => eventsData.push(e));
+  }
+}
+
+function saveTeachersToStorage() { localStorage.setItem(STORAGE_KEYS.teachers, JSON.stringify(teachersData)); }
+function saveEventsToStorage()   { localStorage.setItem(STORAGE_KEYS.events,   JSON.stringify(eventsData));   }
+
+// ─── TOAST ───
+function showToast(msg, type = 'success') {
+  const toast = document.getElementById('adminToast');
+  document.getElementById('adminToastMsg').textContent = msg;
+  toast.className = 'admin-toast ' + type + ' show';
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+// ─── ADMIN MODAL OPEN/CLOSE ───
+const adminLoginModal  = document.getElementById('adminLoginModal');
+const adminPanelModal  = document.getElementById('adminPanelModal');
+
+document.getElementById('adminNavBtn')?.addEventListener('click', e => {
+  e.preventDefault();
+  openModal(adminLoginModal);
+});
+document.getElementById('closeAdminLogin')?.addEventListener('click', () => closeModal(adminLoginModal));
+document.getElementById('closeAdminPanel')?.addEventListener('click', () => closeModal(adminPanelModal));
+
+adminLoginModal.addEventListener('click', e => { if (e.target === adminLoginModal) closeModal(adminLoginModal); });
+adminPanelModal.addEventListener('click', e => { if (e.target === adminPanelModal) closeModal(adminPanelModal); });
+
+// ─── ADMIN LOGIN ───
+document.getElementById('adminLoginForm')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const user = document.getElementById('adminUser').value.trim();
+  const pass = document.getElementById('adminPass').value.trim();
+  if (user === 'admin' && pass === adminPassword) {
+    closeModal(adminLoginModal);
+    openModal(adminPanelModal);
+    document.getElementById('adminUser').value = '';
+    document.getElementById('adminPass').value = '';
+    updateAdminStats();
+  } else {
+    const hint = adminLoginModal.querySelector('.login-hint');
+    hint.style.background = '#fee2e2'; hint.textContent = '✗ Wrong username or password.';
+    setTimeout(() => { hint.style.background = ''; hint.textContent = 'Default credentials: admin / LSI@2025'; }, 3000);
+  }
+});
+
+// ─── ADMIN SIDEBAR NAVIGATION ───
+document.querySelectorAll('.admin-nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.admin-nav-item').forEach(i => i.classList.remove('active'));
+    document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+    item.classList.add('active');
+    document.getElementById('panel-' + item.dataset.panel).classList.add('active');
+  });
+});
+
+// ─── UPDATE ADMIN DASHBOARD STATS ───
+function updateAdminStats() {
+  const e1 = document.getElementById('stat-teachers');
+  const e2 = document.getElementById('stat-students');
+  const e3 = document.getElementById('stat-events');
+  if (e1) e1.textContent = teachersData.length;
+  if (e2) e2.textContent = Object.keys(studentsData).length;
+  if (e3) e3.textContent = eventsData.length;
+}
+
+/* ───────────────────────────────────────
+   TEACHERS ADMIN
+─────────────────────────────────────── */
+function getInitials(name) {
+  return name.split(' ').filter(Boolean).map(w => w[0]).slice(0,2).join('').toUpperCase();
+}
+
+function renderAdminTeachersTable() {
+  const tbody = document.getElementById('adminTeachersTable');
+  if (!tbody) return;
+  tbody.innerHTML = teachersData.map((t, idx) => `
+    <tr>
+      <td>
+        ${t.image
+          ? `<img src="${t.image}" class="admin-thumb" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'" alt="${t.name}"><span class="admin-thumb-placeholder" style="display:none">${getInitials(t.name)}</span>`
+          : `<span class="admin-thumb-placeholder">${getInitials(t.name)}</span>`
+        }
+      </td>
+      <td><strong>${t.name}</strong></td>
+      <td style="font-size:0.82rem;color:var(--text-mid)">${t.subject}</td>
+      <td><span style="color:var(--gold);font-weight:700">★ ${t.rating}</span></td>
+      <td>
+        <button class="btn-edit" onclick="editTeacher(${idx})"><i class="fas fa-pencil-alt"></i> Edit</button>
+        <button class="btn-del" onclick="deleteTeacher(${idx})"><i class="fas fa-trash"></i> Delete</button>
+      </td>
+    </tr>
+  `).join('') || '<tr><td colspan="5" style="text-align:center;color:var(--text-light);padding:1.5rem">No teachers yet. Add one below.</td></tr>';
+}
+
+// Photo upload via FileReader
+document.getElementById('teacherPhotoFile')?.addEventListener('change', function() {
+  const file = this.files[0];
+  if (!file) return;
+  if (file.size > 8 * 1024 * 1024) { showToast('Image too large. Please use a file under 8 MB.', 'error'); return; }
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    pendingPhotoData = ev.target.result;
+    document.getElementById('photoPreview').src = pendingPhotoData;
+    document.getElementById('photoPreviewWrap').style.display = 'block';
+    document.getElementById('photoUploadContent').style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+});
+
+// Toggle URL input
+document.getElementById('toggleUrlInput')?.addEventListener('click', () => {
+  const wrap = document.getElementById('urlInputWrap');
+  wrap.style.display = wrap.style.display === 'none' ? 'block' : 'none';
+});
+
+function clearPhoto() {
+  pendingPhotoData = '';
+  document.getElementById('teacherPhotoFile').value = '';
+  document.getElementById('photoPreviewWrap').style.display = 'none';
+  document.getElementById('photoUploadContent').style.display = 'block';
+  document.getElementById('teacherPhotoUrl').value = '';
+}
+
+function getPhotoValue() {
+  if (pendingPhotoData) return pendingPhotoData;
+  const urlInput = document.getElementById('teacherPhotoUrl').value.trim();
+  if (urlInput) return urlInput;
+  return '';
+}
+
+function saveTeacher() {
+  const editId = document.getElementById('editTeacherId').value;
+  const name    = document.getElementById('tName').value.trim();
+  const subject = document.getElementById('tSubject').value.trim();
+  const qual    = document.getElementById('tQual').value.trim();
+  const bio     = document.getElementById('tBio').value.trim();
+  const rating  = parseFloat(document.getElementById('tRating').value);
+  const reviews = parseInt(document.getElementById('tReviews').value) || 0;
+  const photo   = getPhotoValue();
+
+  if (!name || !subject || !bio) { showToast('Please fill in Name, Subject, and Bio.', 'error'); return; }
+
+  const teacherObj = {
+    id: editId || 'T' + String(Date.now()).slice(-6),
+    name, subject, qualification: qual, bio,
+    image: photo,
+    rating: Math.round(rating * 10) / 10,
+    reviews
+  };
+
+  if (editId) {
+    const idx = teachersData.findIndex(t => t.id === editId);
+    if (idx > -1) teachersData[idx] = teacherObj;
+    showToast(`"${name}" updated successfully.`);
+  } else {
+    teachersData.push(teacherObj);
+    showToast(`"${name}" added to faculty.`);
+  }
+
+  saveTeachersToStorage();
+  renderTeachers();
+  renderAdminTeachersTable();
+  updateAdminStats();
+  resetTeacherForm();
+}
+
+function editTeacher(idx) {
+  const t = teachersData[idx];
+  document.getElementById('editTeacherId').value = t.id;
+  document.getElementById('tName').value    = t.name;
+  document.getElementById('tSubject').value = t.subject;
+  document.getElementById('tQual').value    = t.qualification || '';
+  document.getElementById('tBio').value     = t.bio;
+  document.getElementById('tRating').value  = t.rating;
+  document.getElementById('tRatingVal').textContent = parseFloat(t.rating).toFixed(1);
+  document.getElementById('tReviews').value = t.reviews || 0;
+  pendingPhotoData = '';
+  if (t.image) {
+    if (t.image.startsWith('data:')) {
+      pendingPhotoData = t.image;
+      document.getElementById('photoPreview').src = t.image;
+      document.getElementById('photoPreviewWrap').style.display = 'block';
+      document.getElementById('photoUploadContent').style.display = 'none';
+    } else {
+      document.getElementById('teacherPhotoUrl').value = t.image;
+      document.getElementById('urlInputWrap').style.display = 'block';
+    }
+  }
+  document.getElementById('teacherFormLabel').textContent = 'Edit Teacher Profile';
+  document.getElementById('teacherSaveLabel').textContent = 'Save Changes';
+  document.getElementById('cancelTeacherBtn').style.display = 'inline-flex';
+  document.getElementById('teacherFormCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function cancelTeacherEdit() { resetTeacherForm(); }
+
+function resetTeacherForm() {
+  document.getElementById('editTeacherId').value = '';
+  document.getElementById('tName').value = document.getElementById('tSubject').value =
+  document.getElementById('tQual').value = document.getElementById('tBio').value = '';
+  document.getElementById('tRating').value = 4.5;
+  document.getElementById('tRatingVal').textContent = '4.5';
+  document.getElementById('tReviews').value = 85;
+  clearPhoto();
+  document.getElementById('urlInputWrap').style.display = 'none';
+  document.getElementById('teacherFormLabel').textContent = 'Add New Teacher';
+  document.getElementById('teacherSaveLabel').textContent = 'Add Teacher';
+  document.getElementById('cancelTeacherBtn').style.display = 'none';
+}
+
+function deleteTeacher(idx) {
+  const name = teachersData[idx].name;
+  if (!confirm(`Delete "${name}" from the faculty? This cannot be undone.`)) return;
+  teachersData.splice(idx, 1);
+  saveTeachersToStorage();
+  renderTeachers();
+  renderAdminTeachersTable();
+  updateAdminStats();
+  showToast(`"${name}" removed from faculty.`);
+}
+
+/* ───────────────────────────────────────
+   STUDENTS ADMIN
+─────────────────────────────────────── */
+function renderAdminStudentsTable() {
+  const tbody = document.getElementById('adminStudentsTable');
+  if (!tbody) return;
+  tbody.innerHTML = Object.values(studentsData).map(s => {
+    const total = s.grades.reduce((a, g) => a + g.marks, 0);
+    const pct = (total / (s.grades.length * 100)) * 100;
+    const gpa = ((pct / 100) * 4).toFixed(2);
+    const att = ((s.attendance.present / s.attendance.total) * 100).toFixed(0) + '%';
+    return `<tr>
+      <td><strong>${s.id}</strong></td>
+      <td>${s.name}</td>
+      <td style="font-size:0.82rem">${s.grade}</td>
+      <td>${att}</td>
+      <td><span style="color:var(--gold);font-weight:700">${gpa}</span></td>
+      <td><button class="btn-edit" onclick="editStudent('${s.id}')"><i class="fas fa-pencil-alt"></i> Edit</button></td>
+    </tr>`;
+  }).join('');
+}
+
+function editStudent(id) {
+  const s = studentsData[id];
+  document.getElementById('editStudentId').value = id;
+  document.getElementById('sName').value    = s.name;
+  document.getElementById('sGrade').value   = s.grade;
+  document.getElementById('sPresent').value = s.attendance.present;
+  document.getElementById('sAbsent').value  = s.attendance.absent;
+  document.getElementById('sTotal').value   = s.attendance.total;
+  document.getElementById('studentEditCard').style.display = 'block';
+  document.getElementById('studentEditCard').scrollIntoView({ behavior: 'smooth' });
+}
+
+function saveStudent() {
+  const id = document.getElementById('editStudentId').value;
+  if (!studentsData[id]) return;
+  studentsData[id].name             = document.getElementById('sName').value.trim() || studentsData[id].name;
+  studentsData[id].grade            = document.getElementById('sGrade').value.trim() || studentsData[id].grade;
+  studentsData[id].attendance.present = parseInt(document.getElementById('sPresent').value) || 0;
+  studentsData[id].attendance.absent  = parseInt(document.getElementById('sAbsent').value)  || 0;
+  studentsData[id].attendance.total   = parseInt(document.getElementById('sTotal').value)   || 180;
+  renderAdminStudentsTable();
+  document.getElementById('studentEditCard').style.display = 'none';
+  showToast(`Student "${studentsData[id].name}" updated.`);
+}
+
+/* ───────────────────────────────────────
+   EVENTS ADMIN
+─────────────────────────────────────── */
+function renderAdminEventsTable() {
+  const tbody = document.getElementById('adminEventsTable');
+  if (!tbody) return;
+  tbody.innerHTML = eventsData.map((ev, idx) => `
+    <tr>
+      <td><strong>${ev.title}</strong></td>
+      <td style="font-size:0.82rem">${new Date(ev.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</td>
+      <td><span style="background:var(--gold-pale);color:var(--gold);padding:2px 8px;border-radius:10px;font-size:0.75rem;font-weight:600;text-transform:capitalize">${ev.type}</span></td>
+      <td>
+        <button class="btn-edit" onclick="editEvent(${idx})"><i class="fas fa-pencil-alt"></i> Edit</button>
+        <button class="btn-del" onclick="deleteEvent(${idx})"><i class="fas fa-trash"></i> Delete</button>
+      </td>
+    </tr>
+  `).join('') || '<tr><td colspan="4" style="text-align:center;color:var(--text-light);padding:1.5rem">No events yet.</td></tr>';
+}
+
+function saveEvent() {
+  const editId = document.getElementById('editEventId').value;
+  const title  = document.getElementById('evTitle').value.trim();
+  const date   = document.getElementById('evDate').value;
+  const desc   = document.getElementById('evDesc').value.trim();
+  const type   = document.getElementById('evType').value;
+  if (!title || !date || !desc) { showToast('Please fill in Title, Date, and Description.', 'error'); return; }
+
+  const evObj = { id: editId ? parseInt(editId) : Date.now(), title, date, description: desc, type };
+
+  if (editId) {
+    const idx = eventsData.findIndex(e => String(e.id) === String(editId));
+    if (idx > -1) eventsData[idx] = evObj;
+    showToast(`Event "${title}" updated.`);
+  } else {
+    eventsData.push(evObj);
+    showToast(`Event "${title}" added.`);
+  }
+
+  saveEventsToStorage();
+  renderEvents();
+  renderAdminEventsTable();
+  renderCalendar();
+  updateAdminStats();
+  cancelEventEdit();
+}
+
+function editEvent(idx) {
+  const ev = eventsData[idx];
+  document.getElementById('editEventId').value = ev.id;
+  document.getElementById('evTitle').value = ev.title;
+  document.getElementById('evDate').value  = ev.date;
+  document.getElementById('evDesc').value  = ev.description;
+  document.getElementById('evType').value  = ev.type;
+  document.getElementById('eventFormLabel').textContent = 'Edit Event';
+  document.getElementById('eventSaveLabel').textContent = 'Save Changes';
+  document.getElementById('cancelEventBtn').style.display = 'inline-flex';
+}
+
+function cancelEventEdit() {
+  document.getElementById('editEventId').value = '';
+  document.getElementById('evTitle').value = document.getElementById('evDate').value =
+  document.getElementById('evDesc').value  = '';
+  document.getElementById('evType').value  = 'academic';
+  document.getElementById('eventFormLabel').textContent = 'Add New Event';
+  document.getElementById('eventSaveLabel').textContent = 'Add Event';
+  document.getElementById('cancelEventBtn').style.display = 'none';
+}
+
+function deleteEvent(idx) {
+  const title = eventsData[idx].title;
+  if (!confirm(`Delete event "${title}"?`)) return;
+  eventsData.splice(idx, 1);
+  saveEventsToStorage();
+  renderEvents();
+  renderAdminEventsTable();
+  renderCalendar();
+  updateAdminStats();
+  showToast(`"${title}" removed.`);
+}
+
+/* ───────────────────────────────────────
+   SETTINGS ADMIN
+─────────────────────────────────────── */
+function changePassword() {
+  const old   = document.getElementById('oldPass').value;
+  const newP  = document.getElementById('newPass').value;
+  const conf  = document.getElementById('confirmPass').value;
+  if (old !== adminPassword) { showToast('Current password is incorrect.', 'error'); return; }
+  if (newP.length < 6)       { showToast('New password must be at least 6 characters.', 'error'); return; }
+  if (newP !== conf)         { showToast('Passwords do not match.', 'error'); return; }
+  adminPassword = newP;
+  localStorage.setItem(STORAGE_KEYS.adminPass, adminPassword);
+  document.getElementById('oldPass').value = document.getElementById('newPass').value = document.getElementById('confirmPass').value = '';
+  showToast('Admin password updated successfully.');
+}
+
+function resetAllData() {
+  if (!confirm('Reset ALL data to factory defaults? This will remove all your custom teachers and events.')) return;
+  localStorage.removeItem(STORAGE_KEYS.teachers);
+  localStorage.removeItem(STORAGE_KEYS.events);
+  localStorage.removeItem(STORAGE_KEYS.evaluations);
+  location.reload();
+}
+
+
+</script>
+</body>
+</html>
