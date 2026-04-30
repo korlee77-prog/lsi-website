@@ -1,0 +1,2 @@
+# lsi-website
+SCHOOM MANAGEMENT SYSTEM
